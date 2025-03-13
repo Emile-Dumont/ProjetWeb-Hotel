@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hôtel Luxe Paris | BookMyStay</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/hotel-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">Book<span class="logo-highlight">MyStay</span></a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="active"><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-detail">
+        <div class="hero-images">
+            <div class="main-image">
+                <img src="assets/images/hotels/hotelparis.jpeg" alt="Hôtel Luxe Paris" id="main-gallery-image">
+                <div class="zoom-icon" id="zoom-image">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <div class="image-counter"><span id="current-image">1</span>/<span id="total-images">5</span></div>
+                <div class="navigation-arrows">
+                    <div class="nav-arrow prev" id="prev-image">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="nav-arrow next" id="next-image">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="thumbnail-container">
+                <div class="thumbnail-images">
+                    <img src="assets/images/hotels/hotelparis.jpeg" alt="Hôtel Luxe Paris - Vue extérieure" class="thumb active" data-src="assets/images/hotels/hotelparis.jpeg" data-caption="Vue extérieure de l'Hôtel Luxe Paris">
+                    <img src="assets/images/hotels/chambreparis.jpg" alt="Chambre de l'Hôtel Luxe Paris" class="thumb" data-src="assets/images/hotels/chambreparis.jpg" data-caption="Chambre Deluxe avec vue sur Paris">
+                    <img src="assets/images/hotels/restoparis.png" alt="Restaurant de l'Hôtel Luxe Paris" class="thumb" data-src="assets/images/hotels/restoparis.png" data-caption="Restaurant gastronomique 'Le Grand Paris'">
+                    <img src="assets/images/hotels/spaparis.png" alt="Spa de l'Hôtel Luxe Paris" class="thumb" data-src="assets/images/hotels/spaparis.png" data-caption="Espace bien-être et spa">
+                    <img src="assets/images/hotels/piscineparis.jpg" alt="Piscine de l'Hôtel Luxe Paris" class="thumb" data-src="assets/images/hotels/piscineparis.jpg" data-caption="Piscine intérieure chauffée">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox pour les images en plein écran -->
+    <div class="lightbox" id="image-lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image" id="lightbox-img">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-nav">
+                <div class="lightbox-arrow" id="lightbox-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="lightbox-arrow" id="lightbox-next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+        <div class="lightbox-close" id="lightbox-close">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hotel-detail-wrapper">
+            <div class="hotel-main">
+                <div class="hotel-header">
+                    <div>
+                        <h1>Hôtel Luxe Paris</h1>
+                        <div class="hotel-location">
+                            <i class="fas fa-map-marker-alt"></i> 15 Avenue des Champs-Élysées, 75008 Paris, France
+                        </div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(120 avis)</span>
+                        </div>
+                    </div>
+                    <div class="hotel-price-badge">
+                        <span class="current-price">180€</span>
+                        <span class="original-price">225€</span>
+                        <span class="discount-badge">-20%</span>
+                        <div class="price-per-night">par nuit</div>
+                    </div>
+                </div>
+
+                <div class="section description">
+                    <h2>À propos de l'hôtel</h2>
+                    <p>Situé au cœur de Paris, à quelques pas des Champs-Élysées, l'Hôtel Luxe Paris incarne l'élégance et le raffinement à la française. Notre établissement 4.5 étoiles offre une expérience inoubliable dans la Ville Lumière, combinant le charme parisien avec des services modernes haut de gamme.</p>
+                    
+                    <p>L'hôtel dispose de 120 chambres et suites somptueuses, chacune décorée avec goût, alliant le style classique parisien aux commodités contemporaines. Nos espaces de vie sont conçus pour garantir votre confort et votre bien-être pendant votre séjour.</p>
+                    
+                    <p>Profitez de notre restaurant gastronomique "Le Grand Paris", de notre bar à cocktails élégant, d'un spa relaxant et d'une piscine intérieure chauffée. Notre emplacement privilégié vous permet d'accéder facilement aux principaux sites touristiques de Paris, dont la Tour Eiffel, le Louvre et Notre-Dame.</p>
+                </div>
+
+                <div class="section amenities">
+                    <h2>Équipements et services</h2>
+                    <div class="amenities-grid">
+                        <div class="amenity-item">
+                            <i class="fas fa-wifi"></i>
+                            <span>WiFi gratuit</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-swimming-pool"></i>
+                            <span>Piscine intérieure</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-spa"></i>
+                            <span>Spa & Bien-être</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurant gastronomique</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-glass-martini-alt"></i>
+                            <span>Bar à cocktails</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Service de concierge</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-parking"></i>
+                            <span>Parking privé</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Salle de fitness</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-coffee"></i>
+                            <span>Petit-déjeuner buffet</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-business-time"></i>
+                            <span>Centre d'affaires</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-baby"></i>
+                            <span>Garde d'enfants</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-paw"></i>
+                            <span>Animaux acceptés</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section rooms">
+                    <h2>Types de chambres</h2>
+                    <div class="rooms-grid">
+                        <div class="room-card">
+                            <img src="assets/images/hotels/paris-chambre-standard.jpg" alt="Chambre Standard">
+                            <div class="room-info">
+                                <h3>Chambre Standard</h3>
+                                <p>Chambre confortable de 20m² avec lit queen-size, salle de bain privative et vue sur la ville.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 2 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit queen-size</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 20m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">180€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?room=standard" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="room-card">
+                            <img src="assets/images/hotels/paris-chambre-deluxe.jpg" alt="Chambre Deluxe">
+                            <div class="room-info">
+                                <h3>Chambre Deluxe</h3>
+                                <p>Chambre spacieuse de 30m² avec lit king-size, salon séparé et vue panoramique sur Paris.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 2 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit king-size</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 30m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">250€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?room=deluxe" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                        <div class="room-card">
+                            <img src="assets/images/hotels/paris-suite.jpg" alt="Suite Exécutive">
+                            <div class="room-info">
+                                <h3>Suite Exécutive</h3>
+                                <p>Suite luxueuse de 50m² avec chambre séparée, salon spacieux et balcon privé avec vue sur la Tour Eiffel.</p>
+                                <div class="room-features">
+                                    <span><i class="fas fa-user"></i> 4 personnes</span>
+                                    <span><i class="fas fa-bed"></i> 1 lit king-size + 1 canapé-lit</span>
+                                    <span><i class="fas fa-arrows-alt-h"></i> 50m²</span>
+                                </div>
+                                <div class="room-price">
+                                    <span class="price">400€</span>
+                                    <span class="per-night">/ nuit</span>
+                                </div>
+                                <a href="reservation.html?room=suite" class="btn btn-primary">Réserver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section reviews">
+                    <h2>Avis des clients</h2>
+                    <div class="review-summary">
+                        <div class="review-score">
+                            <span class="score">4.5</span>
+                            <div class="score-text">
+                                <div class="score-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <p>Basé sur 120 avis</p>
+                            </div>
+                        </div>
+                        <div class="review-categories">
+                            <div class="review-category">
+                                <span class="category-name">Propreté</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 95%"></div>
+                                </div>
+                                <span class="category-score">4.8</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Confort</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 90%"></div>
+                                </div>
+                                <span class="category-score">4.5</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Emplacement</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 98%"></div>
+                                </div>
+                                <span class="category-score">4.9</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Service</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 88%"></div>
+                                </div>
+                                <span class="category-score">4.4</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Rapport qualité-prix</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 85%"></div>
+                                </div>
+                                <span class="category-score">4.3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-list">
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sophie D.">
+                                <div>
+                                    <h4>Sophie D.</h4>
+                                    <span class="review-date">Séjour en avril 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="review-text">"Un séjour merveilleux ! L'emplacement est idéal, à quelques pas des Champs-Élysées. La chambre était spacieuse et impeccable. Le personnel était très attentionné et le petit-déjeuner était délicieux. Je reviendrai certainement."</p>
+                            </div>
+                        </div>
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Thomas L.">
+                                <div>
+                                    <h4>Thomas L.</h4>
+                                    <span class="review-date">Séjour en mars 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                                <p class="review-text">"Très bon hôtel avec un service impeccable. La chambre était confortable mais un peu petite. Le spa est un vrai plus après une journée de visite. Je recommande pour un week-end romantique à Paris."</p>
+                            </div>
+                        </div>
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Émilie P.">
+                                <div>
+                                    <h4>Émilie P.</h4>
+                                    <span class="review-date">Séjour en février 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <p class="review-text">"Nous avons passé un excellent séjour à l'Hôtel Luxe Paris. Notre suite avec vue sur la Tour Eiffel était magnifique ! Le restaurant gastronomique vaut vraiment le détour, et le personnel était toujours prêt à nous aider. Seul bémol : le prix du parking."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-more-reviews">
+                        <a href="#" class="btn btn-secondary">Voir tous les avis</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hotel-sidebar">
+                <div class="booking-form">
+                    <h3>Réserver votre séjour</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="check-in">Arrivée</label>
+                            <input type="date" id="check-in" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="check-out">Départ</label>
+                            <input type="date" id="check-out" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Voyageurs</label>
+                            <div class="guests-select">
+                                <select id="guests">
+                                    <option value="1">1 adulte</option>
+                                    <option value="2" selected>2 adultes</option>
+                                    <option value="3">3 adultes</option>
+                                    <option value="4">4 adultes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-type">Type de chambre</label>
+                            <select id="room-type">
+                                <option value="standard">Chambre Standard</option>
+                                <option value="deluxe">Chambre Deluxe</option>
+                                <option value="suite">Suite Exécutive</option>
+                            </select>
+                        </div>
+                        <div class="price-summary">
+                            <div class="price-row">
+                                <span>180€ x 3 nuits</span>
+                                <span>540€</span>
+                            </div>
+                            <div class="price-row">
+                                <span>Réduction</span>
+                                <span>-108€</span>
+                            </div>
+                            <div class="price-row total">
+                                <span>Total</span>
+                                <span>432€</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Réserver maintenant</button>
+                        <p class="booking-note">Vous ne serez pas débité aujourd'hui</p>
+                    </form>
+                </div>
+                
+                <div class="hotel-map">
+                    <h3>Emplacement</h3>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.2744947894287!2d2.295554415638526!3d48.86911837928825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fc0e14613e5%3A0x7c6bc352598850fd!2sAv.%20des%20Champs-%C3%89lys%C3%A9es%2C%2075008%20Paris%2C%20France!5e0!3m2!1sfr!2sfr!4v1649249357859!5m2!1sfr!2sfr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <p class="map-info"><i class="fas fa-map-marker-alt"></i> 15 Avenue des Champs-Élysées, 75008 Paris, France</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="similar-hotels">
+            <h2>Vous pourriez aussi aimer</h2>
+            <div class="hotels-grid">
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <img src="assets/images/hotels/hotelmed.jpg" alt="Resort Méditerranée">
+                    </div>
+                    <div class="hotel-info">
+                        <h3>Resort Méditerranée</h3>
+                        <div class="hotel-location"><i class="fas fa-map-marker-alt"></i> Nice, France</div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(87 avis)</span>
+                        </div>
+                        <div class="hotel-price">
+                            <span class="price">210€</span>
+                            <span class="per-night">/ nuit</span>
+                        </div>
+                        <a href="hotel-detail.html?id=2" class="btn btn-primary">Voir détails</a>
+                    </div>
+                </div>
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <img src="assets/images/hotels/chaletalpin.jpg" alt="Chalet Alpin">
+                        <div class="hotel-badge new">Nouveau</div>
+                    </div>
+                    <div class="hotel-info">
+                        <h3>Chalet Alpin</h3>
+                        <div class="hotel-location"><i class="fas fa-map-marker-alt"></i> Chamonix, France</div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(45 avis)</span>
+                        </div>
+                        <div class="hotel-price">
+                            <span class="price">245€</span>
+                            <span class="per-night">/ nuit</span>
+                        </div>
+                        <a href="hotel-detail.html?id=3" class="btn btn-primary">Voir détails</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-section footer-about">
+                    <h3>BookMyStay</h3>
+                    <p>Votre partenaire pour des séjours inoubliables partout dans le monde.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section footer-links">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="hotels.html">Hôtels</a></li>
+                        <li><a href="reservations.html">Réservations</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contactez-nous</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de Paris, 75000 Paris</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@bookmystay.fr</p>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Inscrivez-vous pour recevoir nos offres exclusives</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 BookMyStay. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">CGU</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/hotel-detail.js"></script>
+</body>
+</html>

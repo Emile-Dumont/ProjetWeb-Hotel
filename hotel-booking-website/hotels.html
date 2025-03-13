@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hôtels Disponibles | BookMyStay</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/hotels.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Book<span class="logo-highlight">MyStay</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="active"><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Découvrez nos hôtels</h1>
+            <p class="hero-subtitle">Trouvez l'hébergement parfait pour votre prochain séjour</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="hotel-listing">
+            <div class="section-header">
+                <h2>Liste des Hôtels</h2>
+                <p class="section-description">Découvrez des hébergements adaptés à tous vos besoins</p>
+            </div>
+            <div class="filters">
+                <input type="text" id="search" placeholder="Rechercher par nom ou emplacement">
+                <select id="price-filter">
+                    <option value="">Tous les prix</option>
+                    <option value="low">Moins de 100€</option>
+                    <option value="medium">100€ - 200€</option>
+                    <option value="high">Plus de 200€</option>
+                </select>
+                <button id="filter-btn">Filtrer</button>
+            </div>
+            <div id="hotels-list" class="hotels-grid">
+                <!-- Exemple d'hôtel 1 -->
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <img src="assets/images/hotels/hotelparis.jpeg" alt="Hôtel Luxe Paris">
+                        <div class="hotel-badge">-20%</div>
+                    </div>
+                    <div class="hotel-info">
+                        <h3>Hôtel Luxe Paris</h3>
+                        <div class="hotel-location"><i class="fas fa-map-marker-alt"></i> Paris, France</div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(120 avis)</span>
+                        </div>
+                        <div class="hotel-amenities">
+                            <span><i class="fas fa-wifi"></i> WiFi</span>
+                            <span><i class="fas fa-swimming-pool"></i> Piscine</span>
+                            <span><i class="fas fa-utensils"></i> Restaurant</span>
+                        </div>
+                        <div class="hotel-price">
+                            <span class="price">180€</span>
+                            <span class="per-night">/ nuit</span>
+                            <span class="original-price">225€</span>
+                        </div>
+                        <a href="hotel-detail.html?id=1" class="btn btn-primary">Voir détails</a>
+                    </div>
+                </div>
+                
+                <!-- Exemple d'hôtel 2 -->
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <img src="assets/images/hotels/hotelmed.jpg" alt="Resort Méditerranée">
+                    </div>
+                    <div class="hotel-info">
+                        <h3>Resort Méditerranée</h3>
+                        <div class="hotel-location"><i class="fas fa-map-marker-alt"></i> Nice, France</div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(87 avis)</span>
+                        </div>
+                        <div class="hotel-amenities">
+                            <span><i class="fas fa-wifi"></i> WiFi</span>
+                            <span><i class="fas fa-swimming-pool"></i> Piscine</span>
+                            <span><i class="fas fa-spa"></i> Spa</span>
+                        </div>
+                        <div class="hotel-price">
+                            <span class="price">210€</span>
+                            <span class="per-night">/ nuit</span>
+                        </div>
+                        <a href="hotel-detail.html?id=2" class="btn btn-primary">Voir détails</a>
+                    </div>
+                </div>
+                
+                <!-- Exemple d'hôtel 3 -->
+                <div class="hotel-card">
+                    <div class="hotel-image">
+                        <img src="assets/images/hotels/chaletalpin.jpg" alt="Chalet Alpin">
+                        <div class="hotel-badge new">Nouveau</div>
+                    </div>
+                    <div class="hotel-info">
+                        <h3>Chalet Alpin</h3>
+                        <div class="hotel-location"><i class="fas fa-map-marker-alt"></i> Chamonix, France</div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(45 avis)</span>
+                        </div>
+                        <div class="hotel-amenities">
+                            <span><i class="fas fa-wifi"></i> WiFi</span>
+                            <span><i class="fas fa-snowflake"></i> Vue montagne</span>
+                            <span><i class="fas fa-fire"></i> Cheminée</span>
+                        </div>
+                        <div class="hotel-price">
+                            <span class="price">245€</span>
+                            <span class="per-night">/ nuit</span>
+                        </div>
+                        <a href="hotel-detail.html?id=3" class="btn btn-primary">Voir détails</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pagination">
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link next"><i class="fas fa-angle-right"></i></a>
+            </div>
+        </section>
+    </div>
+
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-section footer-about">
+                    <h3>BookMyStay</h3>
+                    <p>Votre partenaire pour des séjours inoubliables partout dans le monde.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section footer-links">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="hotels.html">Hôtels</a></li>
+                        <li><a href="reservations.html">Réservations</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contactez-nous</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de Paris, 75000 Paris</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@bookmystay.fr</p>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Inscrivez-vous pour recevoir nos offres exclusives</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BookMyStay. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">CGU</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/hotels.js"></script>
+</body>
+</html>

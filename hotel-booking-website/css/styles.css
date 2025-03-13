@@ -1,0 +1,7 @@
+/* Import all CSS files */
+@import 'common.css';
+@import 'index.css';
+@import 'hotels.css';
+@import 'reservations.css';
+@import 'promotions.css';
+@import 'contact.css';

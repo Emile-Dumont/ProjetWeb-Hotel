@@ -1,0 +1,28 @@
+:root {
+    --primary: #7EB77F;
+    --primary-dark: #5D9A5E;
+    --secondary: #A4D4A5;
+    --dark: #1E293B;
+    --light: #F8FAFC;
+    --gray: #64748B;
+    --light-gray: #E2E8F0;
+    --accent: #D6E5D6;
+    --danger: #EF4444;
+    --success: #10B981;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition: all 0.3s ease;
+    
+    /* Anciennes couleurs pour compatibilité */
+    --old-primary: #ff5a5f;
+    --old-primary-dark: #ff4146;
+    
+    /* Couleur dorée pour les étoiles */
+    --gold: #FFD700;
+    
+    /* Couleurs spécifiques au footer */
+    --footer-text: #becbd9;
+    --footer-link: #becbd9;
+    --footer-hover: #7EB77F;
+    --footer-border: rgba(255, 255, 255, 0.1);
+}

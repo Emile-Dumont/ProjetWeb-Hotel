@@ -1,0 +1,77 @@
+<!-- filepath: /c:/Users/clement.rubin/OneDrive - JUNIA Grande école d'ingénieurs/Documents/COURS CIR 2/SEM 2/WEB/Projet/Projet_JS/promotions.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotions | BookMyStay</title>
+    <link rel="stylesheet" href="css/promotions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">BookMyStay</div>
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+            <li><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+            <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+            <li class="active"><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Profitez de nos promotions</h1>
+            <p>Des offres exceptionnelles pour vos séjours</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="promotions-section">
+            <h2>Promotions Actuelles</h2>
+            <div class="promotion">
+                <h3>Réduction de 20% sur les réservations anticipées</h3>
+                <p>Réservez votre séjour au moins 30 jours à l'avance et bénéficiez d'une réduction de 20% sur le tarif total.</p>
+            </div>
+            <div class="promotion">
+                <h3>Offre Spéciale Week-end</h3>
+                <p>Réservez un séjour de deux nuits pendant le week-end et obtenez la troisième nuit gratuite.</p>
+            </div>
+            <div class="promotion">
+                <h3>Offre Famille</h3>
+                <p>Les enfants séjournent gratuitement! Pour chaque réservation d'une chambre familiale, jusqu'à deux enfants peuvent séjourner gratuitement.</p>
+            </div>
+            <div class="promotion">
+                <h3>Programme de Fidélité</h3>
+                <p>Inscrivez-vous à notre programme de fidélité et gagnez des points pour chaque réservation, échangeables contre des réductions futures.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>BookMyStay</h3>
+                <p>Votre partenaire pour des séjours inoubliables partout dans le monde.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: support@bookmystay.com</p>
+                <p>Téléphone: +33 1 23 45 67 89</p>
+            </div>
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <p><i class="fab fa-facebook"></i> Facebook</p>
+                <p><i class="fab fa-twitter"></i> Twitter</p>
+                <p><i class="fab fa-instagram"></i> Instagram</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
