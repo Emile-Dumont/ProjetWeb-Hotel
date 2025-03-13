@@ -411,123 +411,31 @@ body {
     bottom: 0;
     width: 50px;
     height: 2px;
-    background-color: #ff5a5f;
-}
-
-.footer-about p {
-    color: #becbd9;
-    line-height: 1.7;
-    margin-bottom: 20px;
-}
-
-.social-links {
-    display: flex;
-    gap: 15px;
-}
-
-.social-links a {
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    transition: background-color 0.3s ease;
-}
-
-.social-links a:hover {
     background-color: var(--primary);
 }
 
-.footer-links ul {
+.footer-section p {
+    color: #becbd9;
+    line-height: 1.7;
+}
+
+.footer-section ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.footer-links li {
+.footer-section ul li {
     margin-bottom: 12px;
 }
 
-.footer-links a {
+.footer-section ul li a {
     color: #becbd9;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.footer-links a:hover {
-    color: var(--primary);
-}
-
-.footer-contact p {
-    color: #becbd9;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: flex-start;
-}
-
-.footer-contact i {
-    margin-right: 10px;
-    color: var(--primary);
-}
-
-.newsletter-form {
-    position: relative;
-    max-width: 300px;
-}
-
-.newsletter-form input {
-    width: 100%;
-    padding: 12px 15px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    margin-top: 15px;
-}
-
-.newsletter-form button {
-    position: absolute;
-    right: 5px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    color: var(--primary);
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.footer-bottom p {
-    color: #becbd9;
-    margin: 0;
-}
-
-.footer-bottom-links {
-    display: flex;
-    gap: 20px;
-}
-
-.footer-bottom-links a {
-    color: #becbd9;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: color 0.3s ease;
-}
-
-.footer-bottom-links a:hover {
+.footer-section ul li a:hover {
     color: var(--primary);
 }
 
