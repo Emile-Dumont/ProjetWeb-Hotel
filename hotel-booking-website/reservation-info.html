@@ -1,0 +1,543 @@
+-website/reservation-info.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informations de réservation | Trip'ISEN</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/reservations.css">
+    <link rel="stylesheet" href="css/reservation-info.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li class="active"><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero mini-hero">
+        <div class="hero-content">
+            <h1>Finalisez votre réservation</h1>
+            <p>Plus que quelques détails avant de confirmer votre séjour</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="reservation-info-container">
+            <!-- Progression -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" style="width: 75%"></div>
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <span class="step-text">Dates</span>
+                    </div>
+                    <div class="progress-step active" data-step="2">
+                        <div class="step-icon"><i class="fas fa-bed"></i></div>
+                        <span class="step-text">Chambre</span>
+                    </div>
+                    <div class="progress-step active" data-step="3">
+                        <div class="step-icon"><i class="fas fa-user"></i></div>
+                        <span class="step-text">Informations</span>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-icon"><i class="fas fa-credit-card"></i></div>
+                        <span class="step-text">Paiement</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-layout">
+                <!-- Formulaire -->
+                <div class="info-form-section">
+                    <form id="reservationInfoForm" action="php/process_reservation.php" method="POST">
+                        <!-- Champs cachés pour stocker les informations de réservation précédentes -->
+                        <input type="hidden" id="hotel_id" name="hotel_id">
+                        <input type="hidden" id="check_in" name="check_in">
+                        <input type="hidden" id="check_out" name="check_out">
+                        <input type="hidden" id="guests" name="guests">
+                        <input type="hidden" id="room_type" name="room_type">
+                        
+                        <!-- Informations personnelles -->
+                        <div class="form-section" id="personal-info-section">
+                            <h2 class="section-title"><i class="fas fa-user"></i> Vos coordonnées</h2>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Nom complet <span class="required">*</span></label>
+                                    <div class="input-icon">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="name" name="name" placeholder="Prénom et nom" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Email <span class="required">*</span></label>
+                                    <div class="input-icon">
+                                        <i class="fas fa-envelope"></i>
+                                        <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Téléphone</label>
+                                    <div class="input-icon">
+                                        <i class="fas fa-phone"></i>
+                                        <input type="tel" id="phone" name="phone" placeholder="0612345678">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="nationality">Nationalité</label>
+                                    <div class="select-wrapper">
+                                        <select id="nationality" name="nationality">
+                                            <option value="">Sélectionnez votre nationalité</option>
+                                            <option value="fr">France</option>
+                                            <option value="be">Belgique</option>
+                                            <option value="ch">Suisse</option>
+                                            <option value="ca">Canada</option>
+                                            <option value="other">Autre</option>
+                                        </select>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="special_requests">Demandes spéciales</label>
+                                <div class="input-icon textarea-icon">
+                                    <i class="fas fa-comment"></i>
+                                    <textarea id="special_requests" name="special_requests" placeholder="Indiquez ici vos demandes particulières (ex: lit bébé, régime alimentaire spécial, etc.)"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Informations de paiement -->
+                        <div class="form-section" id="payment-section">
+                            <h2 class="section-title"><i class="fas fa-credit-card"></i> Informations de paiement</h2>
+                            
+                            <div class="payment-methods">
+                                <div class="payment-method-option">
+                                    <input type="radio" name="payment_method" id="credit_card" value="credit_card" checked>
+                                    <label for="credit_card" class="payment-method-card">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-credit-card"></i>
+                                        </div>
+                                        <span>Carte bancaire</span>
+                                        <div class="card-brands">
+                                            <i class="fab fa-cc-visa"></i>
+                                            <i class="fab fa-cc-mastercard"></i>
+                                            <i class="fab fa-cc-amex"></i>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="payment-method-option">
+                                    <input type="radio" name="payment_method" id="paypal" value="paypal">
+                                    <label for="paypal" class="payment-method-card">
+                                        <div class="payment-icon">
+                                            <i class="fab fa-paypal"></i>
+                                        </div>
+                                        <span>PayPal</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div id="card-details" class="card-details-section">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="card_name">Nom sur la carte <span class="required">*</span></label>
+                                        <div class="input-icon">
+                                            <i class="fas fa-user"></i>
+                                            <input type="text" id="card_name" name="card_name" placeholder="Nom tel qu'il figure sur la carte" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="card_number">Numéro de carte <span class="required">*</span></label>
+                                    <div class="input-icon">
+                                        <i class="fas fa-credit-card"></i>
+                                        <input type="text" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="expiry_date">Date d'expiration <span class="required">*</span></label>
+                                        <div class="input-icon">
+                                            <i class="fas fa-calendar"></i>
+                                            <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/AA" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="cvv">CVV <span class="required">*</span></label>
+                                        <div class="input-icon">
+                                            <i class="fas fa-lock"></i>
+                                            <input type="text" id="cvv" name="cvv" placeholder="123" required>
+                                            <div class="cvv-hint">
+                                                <i class="fas fa-question-circle"></i>
+                                                <span class="tooltip-text">3 chiffres au dos de votre carte</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="save_card" id="save_card">
+                                    <span class="checkmark"></span>
+                                    <span>Enregistrer mes informations pour mes prochaines réservations</span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group checkbox-group required">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="terms" id="terms" required>
+                                    <span class="checkmark"></span>
+                                    <span>J'accepte les <a href="#" class="link-terms">conditions générales</a> et la <a href="#" class="link-terms">politique de confidentialité</a>.</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Boutons de navigation -->
+                        <div class="form-navigation">
+                            <a href="reservations.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Retour</a>
+                            <button type="submit" class="btn btn-primary">Confirmer la réservation <i class="fas fa-check"></i></button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Résumé de la réservation -->
+                <div class="reservation-summary-section">
+                    <div class="reservation-summary-card">
+                        <h2 class="summary-title">Récapitulatif</h2>
+                        
+                        <div class="summary-hotel" id="summary-hotel-display">
+                            <!-- Sera rempli par JS -->
+                        </div>
+                        
+                        <div class="summary-details">
+                            <div class="summary-item">
+                                <span class="summary-label"><i class="fas fa-calendar-alt"></i> Check-in:</span>
+                                <span class="summary-value" id="summary-checkin-display"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label"><i class="fas fa-calendar-alt"></i> Check-out:</span>
+                                <span class="summary-value" id="summary-checkout-display"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label"><i class="fas fa-moon"></i> Durée:</span>
+                                <span class="summary-value" id="summary-nights-display"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label"><i class="fas fa-bed"></i> Chambre:</span>
+                                <span class="summary-value" id="summary-room-display"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label"><i class="fas fa-users"></i> Voyageurs:</span>
+                                <span class="summary-value" id="summary-guests-display"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-price">
+                            <div-website/reservation-info.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informations de réservation | Trip'ISEN</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/reservations.css">
+    <link rel="stylesheet" href="css/reservation-info.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li class="active"><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero mini-hero">
+        <div class="hero-content">
+            <h1>Finalisez votre réservation</h1>
+            <p>Plus que quelques détails avant de confirmer votre séjour</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="reservation-info-container">
+            <!-- Progression -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" style="width: 75%"></div>
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <span class="step-text">Dates</span>
+                    </div>
+                    <div class="progress-step active" data-step="2">
+                        <div class="step-icon"><i class="fas fa-bed"></i></div>
+                        <span class="step-text">Chambre</span>
+                    </div>
+                    <div class="progress-step active" data-step="3">
+                        <div class="step-icon"><i class="fas fa-user"></i></div>
+                        <span class="step-text">Informations</span>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-icon"><i class="fas fa-credit-card"></i></div>
+                        <span class="step-text">Paiement</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-layout">
+                <!-- Formulaire -->
+                <div class="info-form-section">
+                    <form id="reservationInfoForm" action="php/process_reservation.php" method="POST">
+                        <!-- Champs cachés pour stocker les informations de réservation précédentes -->
+                        <input type="hidden" id="hotel_id" name="hotel_id">
+                        <input type="hidden" id="check_in" name="check_in">
+                        <input type="hidden" id="check_out" name="check_out">
+                        <input type="hidden" id="guests" name="guests">
+                        <input type="hidden" id="room_type" name="room_type">
+                        
+                        <!-- Informations personnelles -->
+                        <div class="form-section" id="personal-info-section">
+                            <h2 class="section-title"><i class="fas fa-user"></i> Vos coordonnées</h2>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Nom complet <span class="required">*</span></label>
+                                    <div class="input-icon">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="name" name="name" placeholder="Prénom et nom" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Email <span class="required">*</span></label>
+                                    <div class="input-icon">
+                                        <i class="fas fa-envelope"></i>
+                                        <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="phone">Téléphone</label>
+                                    <div class="input-icon">
+                                        <i class="fas fa-phone"></i>
+                                        <input type="tel" id="phone" name="phone" placeholder="0612345678">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="nationality">Nationalité</label>
+                                    <div class="select-wrapper">
+                                        <select id="nationality" name="nationality">
+                                            <option value="">Sélectionnez votre nationalité</option>
+                                            <option value="fr">France</option>
+                                            <option value="be">Belgique</option>
+                                            <option value="ch">Suisse</option>
+                                            <option value="ca">Canada</option>
+                                            <option value="other">Autre</option>
+                                        </select>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="special_requests">Demandes spéciales</label>
+                                <div class="input-icon textarea-icon">
+                                    <i class="fas fa-comment"></i>
+                                    <textarea id="special_requests" name="special_requests" placeholder="Indiquez ici vos demandes particulières (ex: lit bébé, régime alimentaire spécial, etc.)"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Informations de paiement -->
+                        <div class="form-section" id="payment-section">
+                            <h2 class="section-title"><i class="fas fa-credit-card"></i> Informations de paiement</h2>
+                            
+                            <div class="payment-methods">
+                                <div class="payment-method-option">
+                                    <input type="radio" name="payment_method" id="credit_card" value="credit_card" checked>
+                                    <label for="credit_card" class="payment-method-card">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-credit-card"></i>
+                                        </div>
+                                        <span>Carte bancaire</span>
+                                        <div class="card-brands">
+                                            <i class="fab fa-cc-visa"></i>
+                                            <i class="fab fa-cc-mastercard"></i>
+                                            <i class="fab fa-cc-amex"></i>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="payment-method-option">
+                                    <input type="radio" name="payment_method" id="paypal" value="paypal">
+                                    <label for="paypal" class="payment-method-card">
+                                        <div class="payment-icon">
+                                            <i class="fab fa-paypal"></i>
+                                        </div>
+                                        <span>PayPal</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div id="card-details" class="card-details-section">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="card_name">Nom sur la carte <span class="required">*</span></label>
+                                        <div class="input-icon">
+                                            <i class="fas fa-user"></i>
+                                            <input type="text" id="card_name" name="card_name" placeholder="Nom tel qu'il figure sur la carte" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="card_number">Numéro de carte <span class="required">*</span></label>
+                                    <div class="input-icon">
+                                        <i class="fas fa-credit-card"></i>
+                                        <input type="text" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="expiry_date">Date d'expiration <span class="required">*</span></label>
+                                        <div class="input-icon">
+                                            <i class="fas fa-calendar"></i>
+                                            <input type="text" id="expiry_date" name="expiry_date" placeholder="MM/AA" required>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="cvv">CVV <span class="required">*</span></label>
+                                        <div class="input-icon">
+                                            <i class="fas fa-lock"></i>
+                                            <input type="text" id="cvv" name="cvv" placeholder="123" required>
+                                            <div class="cvv-hint">
+                                                <i class="fas fa-question-circle"></i>
+                                                <span class="tooltip-text">3 chiffres au dos de votre carte</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group checkbox-group">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="save_card" id="save_card">
+                                    <span class="checkmark"></span>
+                                    <span>Enregistrer mes informations pour mes prochaines réservations</span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group checkbox-group required">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="terms" id="terms" required>
+                                    <span class="checkmark"></span>
+                                    <span>J'accepte les <a href="#" class="link-terms">conditions générales</a> et la <a href="#" class="link-terms">politique de confidentialité</a>.</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Boutons de navigation -->
+                        <div class="form-navigation">
+                            <a href="reservations.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Retour</a>
+                            <button type="submit" class="btn btn-primary">Confirmer la réservation <i class="fas fa-check"></i></button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Résumé de la réservation -->
+                <div class="reservation-summary-section">
+                    <div class="reservation-summary-card">
+                        <h2 class="summary-title">Récapitulatif</h2>
+                        
+                        <div class="summary-hotel" id="summary-hotel-display">
+                            <!-- Sera rempli par JS -->
+                        </div>
+                        
+                        <div class="summary-details">
+                            <div class="summary-item">
+                                <span class="summary-label"><i class="fas fa-calendar-alt"></i> Check-in:</span>
+                                <span class="summary-value" id="summary-checkin-display"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label"><i class="fas fa-calendar-alt"></i> Check-out:</span>
+                                <span class="summary-value" id="summary-checkout-display"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label"><i class="fas fa-moon"></i> Durée:</span>
+                                <span class="summary-value" id="summary-nights-display"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label"><i class="fas fa-bed"></i> Chambre:</span>
+                                <span class="summary-value" id="summary-room-display"></span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label"><i class="fas fa-users"></i> Voyageurs:</span>
+                                <span class="summary-value" id="summary-guests-display"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-price">
+                            <div
