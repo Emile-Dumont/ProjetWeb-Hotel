@@ -42,41 +42,189 @@
             <p class="section-description">Découvrez nos meilleures offres et économisez sur votre prochain séjour</p>
         </div>
         
-        <div class="promotions-grid">
-            <div class="promotion">
-                <img src="assets/images/promotions/promo1.jpg" class="promotion-img" alt="Promotion séjour d'été">
-                <span class="promo-badge">-25%</span>
-                <h3>Offre d'Été</h3>
-                <p class="promotion-date">Valable du 1er juin au 31 août 2023</p>
-                <p>Profitez d'une réduction de 25% sur tous nos hôtels pour vos vacances d'été. Détendez-vous au bord de la piscine ou explorez de nouvelles destinations.</p>
-                <div class="call-to-action">
-                    <button>Réserver maintenant</button>
-                </div>
-            </div>
-            
-            <div class="promotion">
-                <img src="assets/images/promotions/promo2.jpg" class="promotion-img" alt="Promotion week-end">
-                <span class="promo-badge">-15%</span>
-                <h3>Week-end Évasion</h3>
-                <p class="promotion-date">Tous les week-ends</p>
-                <p>Offrez-vous une évasion de week-end avec 15% de réduction. Parfait pour les courts séjours et les escapades romantiques.</p>
-                <div class="call-to-action">
-                    <button>Réserver maintenant</button>
-                </div>
-            </div>
-            
-            <div class="promotion">
-                <img src="assets/images/promotions/promo3.jpg" class="promotion-img" alt="Promotion famille">
-                <span class="promo-badge">Offre Spéciale</span>
-                <h3>Forfait Famille</h3>
-                <p class="promotion-date">Toute l'année</p>
-                <p>Les enfants séjournent gratuitement! Profitez de moments inoubliables en famille sans vous ruiner avec notre forfait spécial famille.</p>
-                <div class="call-to-action">
-                    <button>Réserver maintenant</button>
-                </div>
+        <div class="promotions-filter">
+            <div class="filter-container">
+                <span class="filter-label">Filtrer par:</span>
+                <button class="filter-btn active" data-filter="all">Toutes</button>
+                <button class="filter-btn" data-filter="summer">Été</button>
+                <button class="filter-btn" data-filter="weekend">Week-end</button>
+                <button class="filter-btn" data-filter="family">Famille</button>
             </div>
         </div>
+
+        <div class="promotions-grid">
+            <div class="promotion" data-category="summer">
+                <div class="promotion-image-container">
+                    <img src="assets/images/promotions/promo1.jpg" class="promotion-img" alt="Promotion séjour d'été">
+                    <div class="promotion-overlay">
+                        <div class="promotion-details">
+                            <p>25% de réduction sur tous nos hôtels premium</p>
+                            <button class="view-details-btn">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                <span class="promo-badge pulse">-25%</span>
+                <h3>Offre d'Été</h3>
+                <p class="promotion-date">Valable du 1er juin au 31 août 2023</p>
+                <div class="countdown" data-date="2023-08-31">
+                    <div class="countdown-item">
+                        <span class="countdown-num days">00</span>
+                        <span class="countdown-text">Jours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num hours">00</span>
+                        <span class="countdown-text">Heures</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num minutes">00</span>
+                        <span class="countdown-text">Minutes</span>
+                    </div>
+                </div>
+                <p>Profitez d'une réduction de 25% sur tous nos hôtels pour vos vacances d'été.</p>
+                <div class="call-to-action">
+                    <button class="animated-btn">Réserver maintenant</button>
+                </div>
+            </div>
+            
+            <!-- Promotion été 2 -->
+            <div class="promotion" data-category="summer">
+                <div class="promotion-image-container">
+                    <img src="assets/images/promotions/promo2.jpg" class="promotion-img" alt="Promo bord de mer">
+                    <div class="promotion-overlay">
+                        <div class="promotion-details">
+                            <p>Séjour bord de mer avec petit-déjeuner offert</p>
+                            <button class="view-details-btn">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                <span class="promo-badge pulse">OFFERT</span>
+                <h3>Escapade Côtière</h3>
+                <p class="promotion-date">Valable du 15 juin au 15 septembre 2023</p>
+                <div class="countdown" data-date="2023-09-15">
+                    <div class="countdown-item">
+                        <span class="countdown-num days">00</span>
+                        <span class="countdown-text">Jours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num hours">00</span>
+                        <span class="countdown-text">Heures</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num minutes">00</span>
+                        <span class="countdown-text">Minutes</span>
+                    </div>
+                </div>
+                <p>Profitez d'un séjour en bord de mer avec petit-déjeuner offert pour deux personnes.</p>
+                <div class="call-to-action">
+                    <button class="animated-btn">Réserver maintenant</button>
+                </div>
+            </div>
+            
+            <!-- Promotion été 3 -->
+            <div class="promotion" data-category="summer">
+                <div class="promotion-image-container">
+                    <img src="assets/images/promotions/promo3.jpg" class="promotion-img" alt="Festival d'été">
+                    <div class="promotion-overlay">
+                        <div class="promotion-details">
+                            <p>Accès VIP aux festivals d'été locaux inclus</p>
+                            <button class="view-details-btn">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                <span class="promo-badge pulse">VIP</span>
+                <h3>Séjour Festival</h3>
+                <p class="promotion-date">Valable du 1er juillet au 15 août 2023</p>
+                <div class="countdown" data-date="2023-08-15">
+                    <div class="countdown-item">
+                        <span class="countdown-num days">00</span>
+                        <span class="countdown-text">Jours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num hours">00</span>
+                        <span class="countdown-text">Heures</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num minutes">00</span>
+                        <span class="countdown-text">Minutes</span>
+                    </div>
+                </div>
+                <p>Séjournez dans nos hôtels partenaires et bénéficiez d'un accès VIP aux festivals locaux.</p>
+                <div class="call-to-action">
+                    <button class="animated-btn">Réserver maintenant</button>
+                </div>
+            </div>
+            
+            <!-- Promotion weekend 1 -->
+            <div class="promotion" data-category="weekend">
+                <div class="promotion-image-container">
+                    <img src="assets/images/promotions/promo4.jpg" class="promotion-img" alt="Weekend romantique">
+                    <div class="promotion-overlay">
+                        <div class="promotion-details">
+                            <p>Champagne et dîner aux chandelles inclus</p>
+                            <button class="view-details-btn">Voir détails</button>
+                        </div>
+                    </div>
+                </div>
+                <span class="promo-badge pulse">-30%</span>
+                <h3>Weekend Romantique</h3>
+                <p class="promotion-date">Tous les weekends jusqu'au 31 octobre 2023</p>
+                <div class="countdown" data-date="2023-10-31">
+                    <div class="countdown-item">
+                        <span class="countdown-num days">00</span>
+                        <span class="countdown-text">Jours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num hours">00</span>
+                        <span class="countdown-text">Heures</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-num minutes">00</span>
+                        <span class="countdown-text">Minutes</span>
+                    </div>
+                </div>
+                <p>Offrez-vous un weekend romantique avec 30% de réduction, champagne et dîner inclus.</p>
+                <div class="call-to-action">
+                    <button class="animated-btn">Réserver maintenant</button>
+                </div>
+            </div>
+            
+            <!-- Répétez ce format pour les autres promotions avec data-category="weekend" et data-category="family" -->
+            <!-- Les autres promotions seraient ajoutées ici avec la même structure -->
+        </div>
     </div>
+
+    <!-- Ajouter avant le footer -->
+    <section class="testimonial-section">
+        <div class="section-header">
+            <h2>Ce que nos clients disent</h2>
+            <p class="section-description">Découvrez les expériences de nos clients avec nos promotions</p>
+        </div>
+        
+        <div class="testimonial-slider">
+            <div class="testimonial-container">
+                <div class="testimonial active">
+                    <div class="testimonial-content">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p>J'ai profité de l'offre d'été et j'ai économisé 25% sur mon séjour de luxe. Un rapport qualité-prix exceptionnel!</p>
+                        <div class="testimonial-author">
+                            <img src="assets/images/testimonials/user1.jpg" alt="Julie M.">
+                            <div>
+                                <h4>Julie M.</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Ajoutez plus de témoignages ici -->
+            </div>
+            <div class="slider-controls">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
 
     <footer class="modern-footer">
         <div class="footer-content">
@@ -127,5 +275,6 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/promotions.js"></script>
 </body>
 </html>
