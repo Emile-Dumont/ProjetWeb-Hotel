@@ -44,37 +44,134 @@
     <div class="container">
         <section class="reservation-form">
             <h2>Formulaire de réservation</h2>
-            <form id="reservationForm">
-                <div class="form-group">
-                    <label for="hotel">Sélectionnez un hôtel:</label>
-                    <select id="hotel" name="hotel" required>
-                        <option value="">Choisissez un hôtel</option>
-                        <option value="hotel1">Hôtel 1</option>
-                        <option value="hotel2">Hôtel 2</option>
-                        <option value="hotel3">Hôtel 3</option>
-                    </select>
+            <form id="reservationForm" action="php/process_reservation.php" method="POST">
+                <!-- Information de l'hôtel -->
+                <div class="form-section">
+                    <h3><i class="fas fa-hotel"></i> Choisissez votre hôtel</h3>
+                    <div class="form-group">
+                        <label for="hotel_id">Sélectionnez un hôtel:</label>
+                        <select id="hotel_id" name="hotel_id" required>
+                            <option value="">Choisissez un hôtel</option>
+                            <option value="1">Hôtel Luxe Paris - Paris, France</option>
+                            <option value="2">Resort Méditerranée - Nice, France</option>
+                            <option value="3">Chalet Alpin - Chamonix, France</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="check_in">Date d'arrivée:</label>
+                            <input type="date" id="check_in" name="check_in" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="check_out">Date de départ:</label>
+                            <input type="date" id="check_out" name="check_out" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guests">Nombre de personnes:</label>
+                            <input type="number" id="guests" name="guests" min="1" max="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="room_type">Type de chambre:</label>
+                            <select id="room_type" name="room_type" required>
+                                <option value="">Choisissez un type de chambre</option>
+                                <option value="standard">Chambre Standard</option>
+                                <option value="deluxe">Chambre Deluxe</option>
+                                <option value="suite">Suite</option>
+                                <option value="family">Chambre Familiale</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="checkin">Date d'arrivée:</label>
-                    <input type="date" id="checkin" name="checkin" required>
+
+                <!-- Information personnelles -->
+                <div class="form-section">
+                    <h3><i class="fas fa-user"></i> Informations personnelles</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nom complet:</label>
+                            <input type="text" id="name" name="name" placeholder="Votre nom complet" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Téléphone:</label>
+                        <input type="tel" id="phone" name="phone" placeholder="ex: 06 12 34 56 78">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="checkout">Date de départ:</label>
-                    <input type="date" id="checkout" name="checkout" required>
+
+                <!-- Demandes spéciales -->
+                <div class="form-section">
+                    <h3><i class="fas fa-comment"></i> Demandes spéciales</h3>
+                    <div class="form-group">
+                        <label for="special_requests">Avez-vous des demandes particulières?</label>
+                        <textarea id="special_requests" name="special_requests" rows="4" placeholder="Ex: lit pour bébé, chambre au calme, étage élevé..."></textarea>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="guests">Nombre de personnes:</label>
-                    <input type="number" id="guests" name="guests" min="1" required>
+
+                <!-- Options supplémentaires -->
+                <div class="form-section">
+                    <h3><i class="fas fa-plus-circle"></i> Options supplémentaires</h3>
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="options[]" value="breakfast"> Petit-déjeuner
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="options[]" value="parking"> Parking
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="options[]" value="spa"> Accès Spa
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
                 </div>
-                <button type="submit" class="btn">Réserver</button>
+
+                <div class="form-section">
+                    <h3><i class="fas fa-shield-alt"></i> Paiement et Conditions</h3>
+                    <div class="form-group checkbox-group required">
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="terms" required> J'accepte les conditions générales
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="price-estimate" class="price-summary">
+                    <h3>Estimation de prix</h3>
+                    <div class="price-details">
+                        <div class="price-row">
+                            <span>Chambre:</span>
+                            <span id="room-price">-- €</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Options:</span>
+                            <span id="options-price">0 €</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Total estimé:</span>
+                            <span id="total-price">-- €</span>
+                        </div>
+                    </div>
+                    <small>* Prix définitif confirmé après validation de la réservation</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Confirmer la réservation</button>
             </form>
         </section>
-
-        <section class="confirmation" id="confirmation" style="display:none;">
-            <h2>Confirmation de réservation</h2>
-            <p>Merci pour votre réservation! Vous recevrez un e-mail de confirmation sous peu.</p>
-        </section>
     </div>
+
+    <section class="confirmation" id="confirmation" style="display:none;">
+        <h2>Confirmation de réservation</h2>
+        <p>Merci pour votre réservation! Vous recevrez un e-mail de confirmation sous peu.</p>
+    </section>
 
     <footer class="modern-footer">
         <div class="footer-content">
