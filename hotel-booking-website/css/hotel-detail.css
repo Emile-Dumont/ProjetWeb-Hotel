@@ -791,6 +791,115 @@ body {
     margin-top: auto;
 }
 
+/* Améliorations pour la section "Vous pourriez aimer" */
+.related-hotels {
+    margin-bottom: 80px; /* Marge inférieure plus importante pour éviter le chevauchement avec le footer */
+}
+
+.related-hotels h2 {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--dark);
+}
+
+.related-hotels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.related-hotel-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%; /* Assure une hauteur uniforme */
+    display: flex;
+    flex-direction: column;
+}
+
+.related-hotel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.related-hotel-image {
+    position: relative;
+    height: 200px; /* Hauteur fixe pour toutes les images */
+    overflow: hidden;
+}
+
+.related-hotel-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image couvre bien l'espace sans déformation */
+    transition: transform 0.5s;
+}
+
+.related-hotel-card:hover .related-hotel-image img {
+    transform: scale(1.1);
+}
+
+.related-hotel-info {
+    padding: 20px;
+    flex-grow: 1; /* Permet à cette section de s'étendre pour égaliser les hauteurs */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.related-hotel-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--dark);
+}
+
+.related-hotel-location {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.related-hotel-location i {
+    margin-right: 5px;
+    color: var(--primary);
+}
+
+.related-hotel-rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.related-hotel-rating i {
+    color: var(--gold);
+    margin-right: 2px;
+}
+
+.related-hotel-price {
+    margin-top: auto; /* Pousse le prix vers le bas */
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 15px;
+}
+
+/* Media queries pour assurer la responsivité */
+@media (max-width: 768px) {
+    .related-hotels-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .related-hotels-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Button styles */
 .btn {
     display: inline-block;
