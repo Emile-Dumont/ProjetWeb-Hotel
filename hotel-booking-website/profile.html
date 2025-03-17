@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil - Trip'ISEN</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <!-- Cette partie sera modifiée dynamiquement par JavaScript -->
+                <div id="guest-actions">
+                    <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+                </div>
+                <div id="user-actions" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-btn">
+                            <i class="fas fa-user-circle"></i> <span id="username">Utilisateur</span> <i class="fas fa-caret-down"></i>
+                        </button>
+                        <div class="user-dropdown-content">
+                            <a href="profile.html"><i class="fas fa-id-card"></i> Mon profil</a>
+                            <a href="reservations.html"><i class="fas fa-list"></i> Mes réservations</a>
+                            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="profile-header">
+            <h1>Mon Profil</h1>
+            <p>Gérez vos informations personnelles et préférences</p>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-sidebar">
+                <div class="profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                    <h3 id="sidebar-username">Nom d'utilisateur</h3>
+                    <p id="sidebar-email">email@example.com</p>
+                </div>
+                <ul class="profile-menu">
+                    <li class="active" data-tab="personal-info"><i class="fas fa-user"></i> Informations personnelles</li>
+                    <li data-tab="bookings"><i class="fas fa-calendar-check"></i> Mes réservations</li>
+                    <li data-tab="security"><i class="fas fa-lock"></i> Sécurité</li>
+                    <li data-tab="preferences"><i class="fas fa-sliders-h"></i> Préférences</li>
+                </ul>
+            </div>
+            
+            <div class="profile-main">
+                <!-- Tab 1: Informations personnelles -->
+                <div class="profile-tab active" id="personal-info">
+                    <h2>Informations personnelles</h2>
+                    <div id="update-info-message" class="message"></div>
+                    <form id="personal-info-form">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" placeholder="Votre nom complet">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Votre email" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Votre numéro de téléphone">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Adresse</label>
+                            <input type="text" id="address" name="address" placeholder="Votre adresse">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">Ville</label>
+                                <input type="text" id="city" name="city" placeholder="Votre ville">
+                            </div>
+                            <div class="form-group">
+                                <label for="postal_code">Code postal</label>
+                                <input type="text" id="postal_code" name="postal_code" placeholder="Code postal">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Pays</label>
+                            <input type="text" id="country" name="country" placeholder="Votre pays">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Tab 2: Mes réservations -->
+                <div class="profile-tab" id="bookings">
+                    <h2>Mes réservations</h2>
+                    <div class="booking-list">
+                        <p class="no-bookings">Vous n'avez pas encore de réservations.</p>
+                        <!-- Les réservations seront chargées dynamiquement ici -->
+                    </div>
+                </div>
+                
+                <!-- Tab 3: Sécurité -->
+                <div class="profile-tab" id="security">
+                    <h2>Sécurité</h2>
+                    <div id="update-password-message" class="message"></div>
+                    <form id="change-password-form">
+                        <div class="form-group">
+                            <label for="current_password">Mot de passe actuel</label>
+                            <input type="password" id="current_password" name="current_password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password">Nouveau mot de passe</label>
+                            <input type="password" id="new_password" name="new_password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirmer le nouveau mot de passe</label>
+                            <input type="password" id="confirm_password" name="confirm_password" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Changer le mot de passe</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Tab 4: Préférences -->
+                <div class="profile-tab" id="preferences">
+                    <h2>Préférences</h2>
+                    <div id="update-preferences-message" class="message"></div>
+                    <form id="preferences-form">
+                        <div class="form-group">
+                            <label>Notifications email</label>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="notifications_promotions" id="notifications_promotions">
+                                    Recevoir des offres et promotions
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="notifications_bookings" id="notifications_bookings">
+                                    Recevoir des confirmations de réservation
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="notifications_newsletter" id="notifications_newsletter">
+                                    S'abonner à la newsletter
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Préférences de voyage</label>
+                            <div class="checkbox-group">
+                                <label>
+                                    <input type="checkbox" name="preference_city" id="preference_city">
+                                    Séjours en ville
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="preference_beach" id="preference_beach">
+                                    Séjours à la plage
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="preference_mountain" id="preference_mountain">
+                                    Séjours à la montagne
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="preference_countryside" id="preference_countryside">
+                                    Séjours à la campagne
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Enregistrer les préférences</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="modern-footer">
+        <!-- Copier le même footer que dans les autres pages -->
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

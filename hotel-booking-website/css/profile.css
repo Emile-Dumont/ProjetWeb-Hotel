@@ -1,0 +1,292 @@
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.profile-header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.profile-header p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+.profile-content {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Sidebar */
+.profile-sidebar {
+    width: 280px;
+    background-color: #f8f9fa;
+    padding: 30px 0;
+    border-right: 1px solid #eee;
+}
+
+.profile-avatar {
+    text-align: center;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-avatar i {
+    font-size: 80px;
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+.profile-avatar h3 {
+    margin: 10px 0 5px;
+    color: #2c3e50;
+}
+
+.profile-avatar p {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.profile-menu {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0;
+}
+
+.profile-menu li {
+    padding: 15px 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.profile-menu li i {
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+}
+
+.profile-menu li:hover {
+    background-color: #edf2f7;
+}
+
+.profile-menu li.active {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Main content */
+.profile-main {
+    flex: 1;
+    padding: 30px;
+}
+
+.profile-tab {
+    display: none;
+}
+
+.profile-tab.active {
+    display: block;
+}
+
+.profile-tab h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: border 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-actions {
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+/* Checkbox Styling */
+.checkbox-group {
+    margin-top: 10px;
+}
+
+.checkbox-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Réservations */
+.booking-list {
+    margin-top: 20px;
+}
+
+.booking-item {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.booking-item h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.booking-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.booking-info {
+    flex: 1;
+}
+
+.booking-info p {
+    margin: 5px 0;
+}
+
+.booking-actions {
+    display: flex;
+    align-items: flex-start;
+}
+
+.no-bookings {
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+/* Messages */
+.message {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .profile-content {
+        flex-direction: column;
+    }
+    
+    .profile-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding: 20px;
+    }
+    
+    .profile-menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .profile-menu li {
+        flex-basis: calc(50% - 10px);
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .profile-menu li {
+        flex-basis: 100%;
+    }
+    
+    .booking-details {
+        flex-direction: column;
+    }
+    
+    .booking-actions {
+        margin-top: 15px;
+    }
+}

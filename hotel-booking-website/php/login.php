@@ -15,6 +15,9 @@ $email = mysqli_real_escape_string($conn, $data['email']);
 $password = $data['password'];
 $remember_me = isset($data['remember_me']) ? $data['remember_me'] : false;
 
+// Debug - enregistrer les données
+error_log("Tentative de connexion: " . $email);
+
 // Vérifier si l'utilisateur existe
 $sql = "SELECT id, name, email, password FROM users WHERE email = ?";
 $stmt = mysqli_prepare($conn, $sql);
@@ -25,12 +28,18 @@ $result = mysqli_stmt_get_result($stmt);
 if (mysqli_num_rows($result) == 1) {
     $user = mysqli_fetch_assoc($result);
     
+    // Debug - vérifier le hash
+    error_log("Hash stocké dans la BDD: " . $user['password']);
+    error_log("Mot de passe fourni (non haché): " . $password);
+    error_log("Résultat de password_verify: " . (password_verify($password, $user['password']) ? 'true' : 'false'));
+    
     // Vérifier le mot de passe
     if (password_verify($password, $user['password'])) {
         // Mot de passe correct, créer la session
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['user_name'] = $user['name'];
         $_SESSION['user_email'] = $user['email'];
+        $_SESSION['is_logged_in'] = true; // Ajouter un flag explicite
         
         // Si "Se souvenir de moi" est coché, créer un cookie
         if ($remember_me) {
@@ -48,13 +57,16 @@ if (mysqli_num_rows($result) == 1) {
         }
         
         echo json_encode(['success' => true]);
+        error_log("Connexion réussie pour: " . $email);
     } else {
         // Mot de passe incorrect
         echo json_encode(['success' => false, 'message' => 'Email ou mot de passe incorrect']);
+        error_log("Échec de connexion - mot de passe incorrect pour: " . $email);
     }
 } else {
     // Utilisateur non trouvé
     echo json_encode(['success' => false, 'message' => 'Email ou mot de passe incorrect']);
+    error_log("Échec de connexion - utilisateur non trouvé: " . $email);
 }
 
 mysqli_stmt_close($stmt);
