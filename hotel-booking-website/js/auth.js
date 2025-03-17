@@ -101,4 +101,50 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // On pourrait ajouter des icônes pour afficher/masquer les mots de passe
     // et les associer à cette fonction
+    // Vérifier si l'utilisateur est connecté
+    checkLoginStatus();
+    
+    // Ajouter un gestionnaire d'événement pour le bouton de déconnexion
+    document.getElementById('logout-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        logout();
+    });
 });
+
+// Vérifier le statut de connexion de l'utilisateur
+function checkLoginStatus() {
+    fetch('php/check_login.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.isLoggedIn) {
+                // L'utilisateur est connecté
+                document.getElementById('guest-actions').style.display = 'none';
+                document.getElementById('user-actions').style.display = 'block';
+                document.getElementById('username').textContent = data.username;
+            } else {
+                // L'utilisateur n'est pas connecté
+                document.getElementById('guest-actions').style.display = 'block';
+                document.getElementById('user-actions').style.display = 'none';
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la vérification du statut de connexion:', error);
+        });
+}
+
+// Fonction de déconnexion
+function logout() {
+    fetch('php/logout.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Rediriger vers la page d'accueil après déconnexion
+                window.location.href = 'index.html';
+            } else {
+                alert('Erreur lors de la déconnexion. Veuillez réessayer.');
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la déconnexion:', error);
+        });
+}

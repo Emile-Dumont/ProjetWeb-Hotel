@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion | BookMyStay</title>
+    <title>Connexion - Trip'ISEN</title>
     <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -35,96 +35,64 @@
         </div>
     </nav>
 
-    <div class="auth-container">
-        <div class="auth-card">
+    <div class="container">
+        <div class="auth-container">
             <div class="auth-tabs">
-                <button class="auth-tab active" data-target="login-form">Connexion</button>
-                <button class="auth-tab" data-target="register-form">Inscription</button>
+                <button class="auth-tab active" data-tab="login">Connexion</button>
+                <button class="auth-tab" data-tab="register">Inscription</button>
             </div>
             
-            <div class="auth-form-container">
-                <!-- Formulaire de connexion -->
-                <form id="login-form" class="auth-form active" action="php/login_process.php" method="POST">
-                    <h2>Connexion</h2>
-                    <div class="form-group">
-                        <label for="login-email">Email</label>
-                        <div class="input-icon-wrapper">
-                            <i class="fas fa-envelope"></i>
+            <div class="auth-content">
+                <div id="login-form" class="auth-form active">
+                    <h2>Connexion à votre compte</h2>
+                    <div id="login-error" class="error-message"></div>
+                    <form id="form-login">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
                             <input type="email" id="login-email" name="email" required>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="login-password">Mot de passe</label>
-                        <div class="input-icon-wrapper">
-                            <i class="fas fa-lock"></i>
+                        <div class="form-group">
+                            <label for="login-password">Mot de passe</label>
                             <input type="password" id="login-password" name="password" required>
                         </div>
-                    </div>
-                    <div class="form-footer">
-                        <div class="remember-me">
-                            <input type="checkbox" id="remember" name="remember">
-                            <label for="remember">Se souvenir de moi</label>
+                        <div class="form-group remember-me">
+                            <input type="checkbox" id="remember-me" name="remember-me">
+                            <label for="remember-me">Se souvenir de moi</label>
                         </div>
-                        <a href="reset-password.html" class="forgot-password">Mot de passe oublié?</a>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
-                </form>
+                        <button type="submit" class="btn btn-primary">Se connecter</button>
+                        <p class="auth-links">
+                            <a href="#" class="forgot-password">Mot de passe oublié?</a>
+                        </p>
+                    </form>
+                </div>
                 
-                <!-- Formulaire d'inscription -->
-                <form id="register-form" class="auth-form" action="php/register_process.php" method="POST">
+                <div id="register-form" class="auth-form">
                     <h2>Créer un compte</h2>
-                    <div class="form-row">
+                    <div id="register-error" class="error-message"></div>
+                    <form id="form-register">
                         <div class="form-group">
-                            <label for="register-firstname">Prénom</label>
-                            <div class="input-icon-wrapper">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="register-firstname" name="firstname" required>
-                            </div>
+                            <label for="register-name">Nom complet</label>
+                            <input type="text" id="register-name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="register-lastname">Nom</label>
-                            <div class="input-icon-wrapper">
-                                <i class="fas fa-user"></i>
-                                <input type="text" id="register-lastname" name="lastname" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="register-email">Email</label>
-                        <div class="input-icon-wrapper">
-                            <i class="fas fa-envelope"></i>
+                            <label for="register-email">Email</label>
                             <input type="email" id="register-email" name="email" required>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="register-phone">Téléphone</label>
-                        <div class="input-icon-wrapper">
-                            <i class="fas fa-phone"></i>
-                            <input type="tel" id="register-phone" name="phone">
-                        </div>
-                    </div>
-                    <div class="form-row">
                         <div class="form-group">
                             <label for="register-password">Mot de passe</label>
-                            <div class="input-icon-wrapper">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="register-password" name="password" required>
-                            </div>
+                            <input type="password" id="register-password" name="password" required>
                         </div>
                         <div class="form-group">
-                            <label for="register-confirm-password">Confirmer</label>
-                            <div class="input-icon-wrapper">
-                                <i class="fas fa-lock"></i>
-                                <input type="password" id="register-confirm-password" name="confirm_password" required>
-                            </div>
+                            <label for="register-confirm-password">Confirmer le mot de passe</label>
+                            <input type="password" id="register-confirm-password" name="confirm_password" required>
                         </div>
-                    </div>
-                    <div class="form-group terms">
-                        <input type="checkbox" id="terms" name="terms" required>
-                        <label for="terms">J'accepte les <a href="#">conditions d'utilisation</a> et la <a href="#">politique de confidentialité</a></label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
-                </form>
+                        <div class="form-group terms">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">J'accepte les <a href="#">conditions d'utilisation</a> et la <a href="#">politique de confidentialité</a></label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -170,6 +138,6 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <script src="js/auth.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
