@@ -1,28 +1,30 @@
 :root {
-    --primary: #7EB77F;
-    --primary-dark: #5D9A5E;
-    --secondary: #A4D4A5;
-    --dark: #1E293B;
-    --light: #F8FAFC;
-    --gray: #64748B;
-    --light-gray: #E2E8F0;
-    --accent: #D6E5D6;
-    --danger: #EF4444;
-    --success: #10B981;
-    --border-radius: 8px;
-    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --transition: all 0.3s ease;
+    /* Palette de couleurs vert pastel */
+    --primary: #a1c9a6;          /* Vert pastel principal */
+    --primary-dark: #81aa87;     /* Vert pastel foncé pour les hover */
+    --primary-light: #d3e6d5;    /* Vert pastel clair pour les backgrounds légers */
     
-    /* Anciennes couleurs pour compatibilité */
-    --old-primary: #ff5a5f;
-    --old-primary-dark: #ff4146;
+    /* Couleurs secondaires */
+    --secondary: #f2f9f3;        /* Fond très clair pour sections alternées */
+    --accent: #dea5a4;           /* Accent rose pastel pour badges/highlights */
     
-    /* Couleur dorée pour les étoiles */
-    --gold: #FFD700;
+    /* Couleurs neutres */
+    --dark: #2c3e50;             /* Texte foncé */
+    --text: #4a4a4a;             /* Texte standard */
+    --text-light: #7f8c8d;       /* Texte secondaire */
+    --light: #f8f9fa;            /* Fond clair */
+    --white: #ffffff;            /* Blanc */
     
-    /* Couleurs spécifiques au footer */
-    --footer-text: #becbd9;
-    --footer-link: #becbd9;
-    --footer-hover: #7EB77F;
-    --footer-border: rgba(255, 255, 255, 0.1);
+    /* Couleurs fonctionnelles */
+    --success: #a1c9a6;          /* Vert pastel pour succès */
+    --warning: #f3d6a1;          /* Jaune pastel pour avertissements */
+    --danger: #dea5a4;           /* Rouge pastel pour erreurs */
+    --info: #a1c1de;             /* Bleu pastel pour informations */
+    
+    /* Couleurs spéciales */
+    --gold: #f3d6a1;             /* Or pastel pour étoiles d'évaluation */
+    
+    /* Effets */
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 10px 25px rgba(161, 201, 166, 0.2);
 }

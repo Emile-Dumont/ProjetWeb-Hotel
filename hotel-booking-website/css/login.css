@@ -1,17 +1,20 @@
+@import 'variables.css';
+
 .container {
     min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
+    margin-top: 120px; /* Augmentation de la marge supérieure à 120px pour être sûr que le formulaire est bien en dessous de la navbar */
 }
 
 .auth-container {
     max-width: 500px;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--white);
     border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     overflow: hidden;
 }
 
@@ -33,8 +36,8 @@
 }
 
 .auth-tab.active {
-    color: #2c3e50;
-    border-bottom: 3px solid #3498db;
+    color: var(--dark);
+    border-bottom: 3px solid var(--primary); /* Changé pour utiliser la couleur primaire verte pastel */
 }
 
 .auth-content {
@@ -51,7 +54,7 @@
 
 .auth-form h2 {
     margin-bottom: 20px;
-    color: #2c3e50;
+    color: var(--dark);
     text-align: center;
 }
 
@@ -63,7 +66,7 @@
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
-    color: #333;
+    color: var(--text);
 }
 
 .form-group input {
@@ -76,7 +79,7 @@
 }
 
 .form-group input:focus {
-    border-color: #3498db;
+    border-color: var(--primary); /* Changé pour utiliser la couleur primaire verte pastel */
     outline: none;
 }
 
@@ -96,7 +99,7 @@
     padding: 12px;
     border: none;
     border-radius: 5px;
-    background-color: #3498db;
+    background-color: var(--primary); /* Changé pour utiliser la couleur primaire verte pastel */
     color: white;
     font-size: 16px;
     font-weight: 600;
@@ -105,7 +108,7 @@
 }
 
 .btn:hover {
-    background-color: #2980b9;
+    background-color: var(--primary-dark); /* Changé pour utiliser la couleur primaire foncée verte pastel */
 }
 
 .auth-links {
@@ -115,7 +118,7 @@
 }
 
 .auth-links a {
-    color: #3498db;
+    color: var(--primary); /* Changé pour utiliser la couleur primaire verte pastel */
     text-decoration: none;
 }
 
@@ -124,8 +127,8 @@
 }
 
 .error-message {
-    color: #e74c3c;
-    background-color: #fadbd8;
+    color: var(--danger); /* Utilisez la variable de danger */
+    background-color: #fdedec; /* Fond légèrement rose pour les erreurs */
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -158,16 +161,16 @@
     display: none;
     position: absolute;
     right: 0;
-    background-color: #fff;
+    background-color: var(--white);
     min-width: 200px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow);
     z-index: 1;
     border-radius: 5px;
     overflow: hidden;
 }
 
 .user-dropdown-content a {
-    color: #333;
+    color: var(--text);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -175,7 +178,7 @@
 }
 
 .user-dropdown-content a:hover {
-    background-color: #f5f5f5;
+    background-color: var(--secondary);
 }
 
 .user-dropdown:hover .user-dropdown-content {

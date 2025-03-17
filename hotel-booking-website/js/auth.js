@@ -47,6 +47,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Fonction d'initialisation globale que nous pouvons appeler depuis n'importe quelle page
+function initAuth() {
+    checkLoginStatus();
+}
+
 // Vérifier le statut de connexion de l'utilisateur
 function checkLoginStatus() {
     fetch('php/check_login.php')
@@ -100,3 +105,7 @@ function logout() {
             console.error('Erreur lors de la déconnexion:', error);
         });
 }
+
+// Exporter les fonctions pour les rendre accessibles globalement
+window.initAuth = initAuth;
+window.logout = logout;

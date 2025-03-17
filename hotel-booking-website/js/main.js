@@ -50,4 +50,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    // Vérifier l'authentification sur toutes les pages
+    if (typeof initAuth === 'function') {
+        initAuth();
+    } else {
+        // Si auth.js n'est pas encore chargé, attendre un peu
+        setTimeout(function() {
+            if (typeof initAuth === 'function') {
+                initAuth();
+            } else {
+                console.error("Le script d'authentification n'est pas chargé correctement");
+            }
+        }, 500);
+    }
 });

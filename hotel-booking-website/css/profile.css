@@ -1,6 +1,8 @@
+@import 'variables.css';
+
 .container {
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 120px auto 40px; /* Augmentation de la marge supérieure pour éviter le chevauchement avec la navbar */
     padding: 0 20px;
 }
 
@@ -11,27 +13,27 @@
 
 .profile-header h1 {
     font-size: 2.5rem;
-    color: #2c3e50;
+    color: var(--dark);
     margin-bottom: 10px;
 }
 
 .profile-header p {
-    color: #7f8c8d;
+    color: var(--text-light);
     font-size: 1.1rem;
 }
 
 .profile-content {
     display: flex;
-    background-color: #fff;
+    background-color: var(--white);
     border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     overflow: hidden;
 }
 
 /* Sidebar */
 .profile-sidebar {
     width: 280px;
-    background-color: #f8f9fa;
+    background-color: var(--secondary);
     padding: 30px 0;
     border-right: 1px solid #eee;
 }
@@ -44,17 +46,17 @@
 
 .profile-avatar i {
     font-size: 80px;
-    color: #3498db;
+    color: var(--primary); /* Changé de #3498db à var(--primary) */
     margin-bottom: 15px;
 }
 
 .profile-avatar h3 {
     margin: 10px 0 5px;
-    color: #2c3e50;
+    color: var(--dark);
 }
 
 .profile-avatar p {
-    color: #7f8c8d;
+    color: var(--text-light);
     font-size: 0.9rem;
     margin: 0;
 }
@@ -80,11 +82,11 @@
 }
 
 .profile-menu li:hover {
-    background-color: #edf2f7;
+    background-color: var(--primary-light);
 }
 
 .profile-menu li.active {
-    background-color: #3498db;
+    background-color: var(--primary); /* Changé de #3498db à var(--primary) */
     color: white;
 }
 
@@ -103,7 +105,7 @@
 }
 
 .profile-tab h2 {
-    color: #2c3e50;
+    color: var(--dark);
     margin-bottom: 25px;
     padding-bottom: 15px;
     border-bottom: 1px solid #eee;
@@ -118,7 +120,7 @@
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
-    color: #333;
+    color: var(--text);
 }
 
 .form-group input {
@@ -131,7 +133,7 @@
 }
 
 .form-group input:focus {
-    border-color: #3498db;
+    border-color: var(--primary); /* Changé de #3498db à var(--primary) */
     outline: none;
 }
 
@@ -159,12 +161,12 @@
 }
 
 .btn-primary {
-    background-color: #3498db;
+    background-color: var(--primary); /* Changé de #3498db à var(--primary) */
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #2980b9;
+    background-color: var(--primary-dark); /* Changé de #2980b9 à var(--primary-dark) */
 }
 
 /* Checkbox Styling */
@@ -189,7 +191,7 @@
 }
 
 .booking-item {
-    background-color: #f8f9fa;
+    background-color: var(--secondary);
     border-radius: 8px;
     padding: 20px;
     margin-bottom: 20px;
@@ -198,7 +200,7 @@
 
 .booking-item h3 {
     margin-top: 0;
-    color: #2c3e50;
+    color: var(--dark);
 }
 
 .booking-details {
@@ -221,7 +223,7 @@
 }
 
 .no-bookings {
-    color: #7f8c8d;
+    color: var(--text-light);
     font-style: italic;
 }
 
@@ -234,16 +236,16 @@
 }
 
 .message.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    border: 1px solid var(--primary);
     display: block;
 }
 
 .message.error {
     background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    color: var(--danger);
+    border: 1px solid var(--danger);
     display: block;
 }
 

@@ -28,7 +28,22 @@
                 <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+                <!-- Cette partie sera modifiée dynamiquement par JavaScript -->
+                <div id="guest-actions">
+                    <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+                </div>
+                <div id="user-actions" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-btn">
+                            <i class="fas fa-user-circle"></i> <span id="username">Utilisateur</span> <i class="fas fa-caret-down"></i>
+                        </button>
+                        <div class="user-dropdown-content">
+                            <a href="profile.html"><i class="fas fa-id-card"></i> Mon profil</a>
+                            <a href="reservations.html"><i class="fas fa-list"></i> Mes réservations</a>
+                            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="hamburger">
                 <span></span>
@@ -40,8 +55,8 @@
 
     <header class="hero">
         <div class="hero-content">
-            <h1>Réservez votre séjour idéal</h1>
-            <p>Quelques clics suffisent pour préparer votre prochaine aventure</p>
+            <h1 style="color: white !important;">Réservez votre séjour idéal</h1>
+            <p style="color: white !important;">Quelques clics suffisent pour préparer votre prochaine aventure</p>
         </div>
     </header>
 
@@ -428,6 +443,7 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/reservations.js"></script>
 </body>
 </html>

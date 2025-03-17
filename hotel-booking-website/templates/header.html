@@ -1,0 +1,55 @@
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-item" data-page="index"><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+            <li class="nav-item" data-page="hotels"><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+            <li class="nav-item" data-page="reservations"><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+            <li class="nav-item" data-page="promotions"><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+            <li class="nav-item" data-page="contact"><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <!-- Cette partie sera modifiée dynamiquement par JavaScript -->
+            <div id="guest-actions">
+                <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+            </div>
+            <div id="user-actions" style="display: none;">
+                <div class="user-dropdown">
+                    <button class="user-dropdown-btn">
+                        <i class="fas fa-user-circle"></i> <span id="username">Utilisateur</span> <i class="fas fa-caret-down"></i>
+                    </button>
+                    <div class="user-dropdown-content">
+                        <a href="profile.html"><i class="fas fa-id-card"></i> Mon profil</a>
+                        <a href="reservations.html"><i class="fas fa-list"></i> Mes réservations</a>
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Mettre en surbrillance l'élément de navigation actif
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentPage = window.location.pathname.split('/').pop().split('.')[0] || 'index';
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        navItems.forEach(item => {
+            if (item.dataset.page === currentPage) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    });
+</script>
