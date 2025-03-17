@@ -2,48 +2,28 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const mysql = require('mysql');
+const bcrypt = require('bcrypt'); // Pour hacher les mots de passe
 
+// Configuration de la connexion à la base de données
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'hotel', // Assurez-vous que c'est le bon nom de base de données
-  port: 3306 
+  database: 'hotel', // Nom de la base de données selon votre SQL
+  port: 3306 // Port MySQL de MAMP
 });
 
-// Pour Windows, vous devriez plutôt utiliser :
-// const db = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'root',
-//   database: 'hotel_booking_db',
-//   port: 8889  // Port MySQL standard pour MAMP sur Windows
-// });
-
-// Première connexion à la base de données
+// Connexion à la base de données
 db.connect((err) => {
   if (err) {
     console.error('Erreur de connexion à la base de données : ', err);
     return;
   }
   console.log('Connexion à la base de données établie avec succès');
-
-  // Exécutez vos requêtes ici
-  db.query('SHOW TABLES', (err, results) => {
-    if (err) {
-      console.error('Erreur d\'exécution de la requête : ', err);
-    } else {
-      console.log('Tables disponibles : ', results);
-    }
-    // Ne fermez pas la connexion ici si vous voulez l'utiliser plus tard
-    // db.end();
-  });
 });
 
-// Middleware pour les fichiers statiques (doit être avant les routes)
+// Configuration des middlewares
 app.use(express.static(path.join(__dirname, 'hotel-booking-website')));
-
-// Middleware pour parser les données des formulaires
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -79,6 +59,101 @@ app.post('/api/reservations', (req, res) => {
   });
 });
 
+// Nouvelle route pour l'inscription utilisateur
+app.post('/api/register', async (req, res) => {
+  try {
+    // Récupérer les données du formulaire
+    const { 
+      username, 
+      password, 
+      email, 
+      first_name, 
+      last_name, 
+      phone, 
+      address, 
+      city, 
+      country, 
+      postal_code 
+    } = req.body;
+
+    // Validation des champs obligatoires
+    if (!username || !password || !email || !first_name || !last_name) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Tous les champs obligatoires doivent être remplis' 
+      });
+    }
+
+    // Vérifier si l'utilisateur existe déjà
+    db.query(
+      'SELECT * FROM users WHERE username = ? OR email = ?', 
+      [username, email], 
+      async (err, results) => {
+        if (err) {
+          console.error('Erreur de base de données:', err);
+          return res.status(500).json({ 
+            success: false, 
+            message: 'Erreur lors de la vérification utilisateur' 
+          });
+        }
+
+        if (results.length > 0) {
+          return res.status(409).json({ 
+            success: false, 
+            message: 'Nom d\'utilisateur ou email déjà utilisé' 
+          });
+        }
+
+        // Hacher le mot de passe
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Créer le nouvel utilisateur
+        const newUser = {
+          username,
+          password: hashedPassword,
+          email,
+          first_name,
+          last_name,
+          phone: phone || null,
+          address: address || null,
+          city: city || null,
+          country: country || null,
+          postal_code: postal_code || null,
+          role: 'client' // Par défaut
+        };
+
+        // Insérer dans la base de données
+        db.query(
+          'INSERT INTO users SET ?', 
+          newUser, 
+          (err, result) => {
+            if (err) {
+              console.error('Erreur d\'insertion:', err);
+              return res.status(500).json({ 
+                success: false, 
+                message: 'Erreur lors de l\'inscription' 
+              });
+            }
+
+            // Inscription réussie
+            res.status(201).json({ 
+              success: true, 
+              message: 'Inscription réussie!',
+              userId: result.insertId
+            });
+          }
+        );
+      }
+    );
+  } catch (error) {
+    console.error('Erreur serveur:', error);
+    res.status(500).json({ 
+      success: false, 
+      message: 'Erreur serveur' 
+    });
+  }
+});
+
 // Route pour les requêtes POST du formulaire
 app.post('/submit', (req, res) => {
   res.send('Form submitted successfully!');
@@ -89,7 +164,7 @@ app.use((req, res) => {
   res.status(404).send('Page not found');
 });
 
-// Lancement du serveur sur le port 3000
+// Lancement du serveur
 app.listen(3000, () => {
   console.log('Serveur démarré sur le port 3000. Accédez à http://localhost:3000/');
 });

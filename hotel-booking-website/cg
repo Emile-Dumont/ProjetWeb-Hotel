@@ -1,0 +1,253 @@
+v.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions Générales de Vente | Trip'ISEN</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/legal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="legal-container">
+        <div class="legal-content">
+            <h1>Conditions Générales de Vente</h1>
+            <p class="last-update">Dernière mise à jour : 14 mars 2025</p>
+            
+            <section>
+                <h2>1. Objet et champ d'application</h2>
+                <p>Les présentes Conditions Générales de Vente (ci-après « CGV ») régissent les relations contractuelles entre la société Trip'ISEN SAS (ci-après « Trip'ISEN ») et toute personne physique ou morale effectuant une réservation par l'intermédiaire du site www.tripisen.fr (ci-après « le Client »).</p>
+                <p>Ces CGV s'appliquent à l'ensemble des prestations proposées sur le site Trip'ISEN.</p>
+                <p>Le Client reconnaît avoir pris connaissance des présentes CGV avant toute réservation et les avoir acceptées sans réserve.</p>
+            </section>
+            
+            <section>
+                <h2>2. Description des services</h2>
+                <p>Trip'ISEN propose un service de réservation d'hébergements hôteliers en ligne. Les prestations offertes par les établissements partenaires sont décrites sur le site avec le maximum de précision.</p>
+                <p>Les photographies illustrant les hôtels n'entrent pas dans le champ contractuel et ne sauraient engager la responsabilité de Trip'ISEN.</p>
+            </section>
+            
+            <section>
+                <h2>3. Processus de réservation</h2>
+                <h3>3.1 Étapes de la réservation</h3>
+                <p>Le processus de réservation comprend les étapes suivantes :</p>
+                <ol>
+                    <li>Sélection des dates et de la destination</li>
+                    <li>Choix de l'hôtel et du type de chambre</li>
+                    <li>Saisie des coordonnées personnelles</li>
+                    <li>Choix du mode de paiement</li>
+                    <li>Validation de la réservation</li>
+                    <li>Confirmation de réservation envoyée par email</li>
+                </ol>
+                
+                <h3>3.2 Confirmation de la réservation</h3>
+                <p>Une réservation n'est confirmée et n'engage Trip'ISEN qu'après l'envoi au Client d'une confirmation écrite par email.</p>
+                <p>Un numéro de réservation est attribué et doit être conservé en cas de besoin de contacter le service client.</p>
+            </section>
+            
+            <section>
+                <h2>4. Prix et modalités de paiement</h2>
+                <h3>4.1 Prix des prestations</h3>
+                <p>Les prix sont indiqués en euros TTC, incluant la TVA applicable au jour de la réservation.</p>
+                <p>Le prix total, incluant les taxes de séjour et frais de service éventuels, est indiqué avant la validation finale de la réservation.</p>
+                <p>Trip'ISEN se réserve le droit de modifier ses prix à tout moment, les prestations étant facturées sur la base des tarifs en vigueur au moment de la confirmation de la réservation.</p>
+                
+                <h3>4.2 Modalités de paiement</h3>
+                <p>Selon les établissements, le règlement peut s'effectuer :</p>
+                <ul>
+                    <li>Intégralement en ligne au moment de la réservation</li>
+                    <li>Par acompte en ligne avec solde à régler à l'hôtel</li>
+                    <li>Intégralement à l'hôtel lors du séjour</li>
+                </ul>
+                <p>Les moyens de paiement acceptés sont indiqués lors du processus de réservation.</p>
+                
+                <h3>4.3 Sécurité des paiements</h3>
+                <p>Les paiements en ligne sont sécurisés par des protocoles de cryptage SSL afin de garantir la confidentialité des informations transmises.</p>
+            </section>
+            
+            <section>
+                <h2>5. Annulation et modification</h2>
+                <h3>5.1 Conditions d'annulation</h3>
+                <p>Les conditions d'annulation varient selon l'établissement et le tarif choisi. Elles sont clairement indiquées avant la validation de la réservation et rappelées dans l'email de confirmation.</p>
+                <p>En cas d'annulation, des frais peuvent être appliqués conformément aux conditions spécifiques acceptées lors de la réservation.</p>
+                
+                <h3>5.2 Procédure d'annulation</h3>
+                <p>Toute demande d'annulation doit être effectuée :</p>
+                <ul>
+                    <li>En ligne via l'espace client du site Trip'ISEN</li>
+                    <li>Par email à reservation@tripisen.fr en précisant le numéro de réservation</li>
+                </ul>
+                <p>L'annulation n'est effective qu'après confirmation écrite de Trip'ISEN.</p>
+                
+                <h3>5.3 Modification de réservation</h3>
+                <p>Les demandes de modification de réservation (dates, type de chambre) sont soumises aux conditions de l'établissement et peuvent entraîner des frais supplémentaires.</p>
+            </section>
+            
+            <section>
+                <h2>6. Obligations et responsabilité</h2>
+                <h3>6.1 Obligations du Client</h3>
+                <p>Le Client s'engage à :</p>
+                <ul>
+                    <li>Fournir des informations exactes et complètes lors de la réservation</li>
+                    <li>Respecter le règlement intérieur des établissements</li>
+                    <li>Régler l'intégralité des sommes dues</li>
+                </ul>
+                
+                <h3>6.2 Responsabilité de Trip'ISEN</h3>
+                <p>Trip'ISEN agit en qualité d'intermédiaire entre le Client et les établissements hôteliers. À ce titre :</p>
+                <ul>
+                    <li>Sa responsabilité se limite à la bonne exécution de son service d'intermédiationv.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions Générales de Vente | Trip'ISEN</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/legal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="legal-container">
+        <div class="legal-content">
+            <h1>Conditions Générales de Vente</h1>
+            <p class="last-update">Dernière mise à jour : 14 mars 2025</p>
+            
+            <section>
+                <h2>1. Objet et champ d'application</h2>
+                <p>Les présentes Conditions Générales de Vente (ci-après « CGV ») régissent les relations contractuelles entre la société Trip'ISEN SAS (ci-après « Trip'ISEN ») et toute personne physique ou morale effectuant une réservation par l'intermédiaire du site www.tripisen.fr (ci-après « le Client »).</p>
+                <p>Ces CGV s'appliquent à l'ensemble des prestations proposées sur le site Trip'ISEN.</p>
+                <p>Le Client reconnaît avoir pris connaissance des présentes CGV avant toute réservation et les avoir acceptées sans réserve.</p>
+            </section>
+            
+            <section>
+                <h2>2. Description des services</h2>
+                <p>Trip'ISEN propose un service de réservation d'hébergements hôteliers en ligne. Les prestations offertes par les établissements partenaires sont décrites sur le site avec le maximum de précision.</p>
+                <p>Les photographies illustrant les hôtels n'entrent pas dans le champ contractuel et ne sauraient engager la responsabilité de Trip'ISEN.</p>
+            </section>
+            
+            <section>
+                <h2>3. Processus de réservation</h2>
+                <h3>3.1 Étapes de la réservation</h3>
+                <p>Le processus de réservation comprend les étapes suivantes :</p>
+                <ol>
+                    <li>Sélection des dates et de la destination</li>
+                    <li>Choix de l'hôtel et du type de chambre</li>
+                    <li>Saisie des coordonnées personnelles</li>
+                    <li>Choix du mode de paiement</li>
+                    <li>Validation de la réservation</li>
+                    <li>Confirmation de réservation envoyée par email</li>
+                </ol>
+                
+                <h3>3.2 Confirmation de la réservation</h3>
+                <p>Une réservation n'est confirmée et n'engage Trip'ISEN qu'après l'envoi au Client d'une confirmation écrite par email.</p>
+                <p>Un numéro de réservation est attribué et doit être conservé en cas de besoin de contacter le service client.</p>
+            </section>
+            
+            <section>
+                <h2>4. Prix et modalités de paiement</h2>
+                <h3>4.1 Prix des prestations</h3>
+                <p>Les prix sont indiqués en euros TTC, incluant la TVA applicable au jour de la réservation.</p>
+                <p>Le prix total, incluant les taxes de séjour et frais de service éventuels, est indiqué avant la validation finale de la réservation.</p>
+                <p>Trip'ISEN se réserve le droit de modifier ses prix à tout moment, les prestations étant facturées sur la base des tarifs en vigueur au moment de la confirmation de la réservation.</p>
+                
+                <h3>4.2 Modalités de paiement</h3>
+                <p>Selon les établissements, le règlement peut s'effectuer :</p>
+                <ul>
+                    <li>Intégralement en ligne au moment de la réservation</li>
+                    <li>Par acompte en ligne avec solde à régler à l'hôtel</li>
+                    <li>Intégralement à l'hôtel lors du séjour</li>
+                </ul>
+                <p>Les moyens de paiement acceptés sont indiqués lors du processus de réservation.</p>
+                
+                <h3>4.3 Sécurité des paiements</h3>
+                <p>Les paiements en ligne sont sécurisés par des protocoles de cryptage SSL afin de garantir la confidentialité des informations transmises.</p>
+            </section>
+            
+            <section>
+                <h2>5. Annulation et modification</h2>
+                <h3>5.1 Conditions d'annulation</h3>
+                <p>Les conditions d'annulation varient selon l'établissement et le tarif choisi. Elles sont clairement indiquées avant la validation de la réservation et rappelées dans l'email de confirmation.</p>
+                <p>En cas d'annulation, des frais peuvent être appliqués conformément aux conditions spécifiques acceptées lors de la réservation.</p>
+                
+                <h3>5.2 Procédure d'annulation</h3>
+                <p>Toute demande d'annulation doit être effectuée :</p>
+                <ul>
+                    <li>En ligne via l'espace client du site Trip'ISEN</li>
+                    <li>Par email à reservation@tripisen.fr en précisant le numéro de réservation</li>
+                </ul>
+                <p>L'annulation n'est effective qu'après confirmation écrite de Trip'ISEN.</p>
+                
+                <h3>5.3 Modification de réservation</h3>
+                <p>Les demandes de modification de réservation (dates, type de chambre) sont soumises aux conditions de l'établissement et peuvent entraîner des frais supplémentaires.</p>
+            </section>
+            
+            <section>
+                <h2>6. Obligations et responsabilité</h2>
+                <h3>6.1 Obligations du Client</h3>
+                <p>Le Client s'engage à :</p>
+                <ul>
+                    <li>Fournir des informations exactes et complètes lors de la réservation</li>
+                    <li>Respecter le règlement intérieur des établissements</li>
+                    <li>Régler l'intégralité des sommes dues</li>
+                </ul>
+                
+                <h3>6.2 Responsabilité de Trip'ISEN</h3>
+                <p>Trip'ISEN agit en qualité d'intermédiaire entre le Client et les établissements hôteliers. À ce titre :</p>
+                <ul>
+                    <li>Sa responsabilité se limite à la bonne exécution de son service d'intermédiation
