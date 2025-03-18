@@ -1,182 +1,137 @@
 <?php
+// reservation_confirmation.php
 session_start();
 
-// Vérifier si la réservation existe dans la session
+// Rediriger si aucune réservation n'est présente en session
 if (!isset($_SESSION['reservation'])) {
-    header("Location: ../reservations.html");
-    exit;
+    header('Location: reservations.html');
+    exit();
 }
 
+// Récupérer les détails de la réservation
 $reservation = $_SESSION['reservation'];
-
-// Inclure le fichier de connexion à la base de données
-require_once 'db_connect.php';
-
-// Récupérer des détails supplémentaires si nécessaire
-try {
-    if (isset($reservation['reservation_id'])) {
-        // Supposons que l'ID est numérique sans le préfixe BOOK-
-        $id = str_replace('BOOK-', '', $reservation['reservation_id']);
-        
-        $stmt = $pdo->prepare("
-            SELECT r.*, h.hotel_name, h.address as hotel_address, h.city as hotel_city, 
-                   rm.room_number, rc.category_name as room_type
-            FROM reservations r
-            JOIN rooms rm ON r.room_id = rm.room_id
-            JOIN hotels h ON rm.hotel_id = h.hotel_id
-            JOIN room_categories rc ON rm.category_id = rc.category_id
-            WHERE r.reservation_id = ?
-        ");
-        
-        $stmt->execute([$id]);
-        $extraDetails = $stmt->fetch();
-        
-        if ($extraDetails) {
-            // Fusionner les détails supplémentaires
-            $reservation = array_merge($reservation, $extraDetails);
-        }
-    }
-} catch (PDOException $e) {
-    // Gérer silencieusement les erreurs - utilisez les données de session existantes
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmation de réservation - BookMyStay</title>
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/confirmation.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Confirmation de Réservation - Tripisien</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/reservation.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <h1>BookMyStay</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="../index.html">Accueil</a></li>
-                <li><a href="../hotels.html">Hôtels</a></li>
-                <li><a href="../reservations.html">Réservations</a></li>
-                <li><a href="../promotions.html">Promotions</a></li>
-                <li><a href="../contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="confirmation-container">
-        <div class="confirmation-header">
-            <i class="fas fa-check-circle"></i>
-            <h1>Merci pour votre réservation!</h1>
-            <p>Votre réservation a été confirmée et un email de confirmation a été envoyé à <?php echo htmlspecialchars($reservation['email']); ?>.</p>
-        </div>
-
-        <div class="confirmation-card">
-            <h3>Détails de votre réservation</h3>
-            <p><strong>Numéro de réservation:</strong> <?php echo htmlspecialchars($reservation['reservation_id']); ?></p>
-            
-            <div class="details-grid">
-                <div class="detail-item">
-                    <span class="label">Nom:</span>
-                    <span class="value"><?php echo htmlspecialchars($reservation['name']); ?></span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="label">Email:</span>
-                    <span class="value"><?php echo htmlspecialchars($reservation['email']); ?></span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="label">Téléphone:</span>
-                    <span class="value"><?php echo htmlspecialchars($reservation['phone']); ?></span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="label">Hôtel:</span>
-                    <span class="value"><?php echo htmlspecialchars($reservation['hotel_name']); ?></span>
-                </div>
-
-                <div class="detail-item">
-                    <span class="label">Type de chambre:</span>
-                    <span class="value"><?php echo htmlspecialchars($reservation['room_type']); ?></span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="label">Numéro de chambre:</span>
-                    <span class="value"><?php echo htmlspecialchars($reservation['room_number'] ?? 'Attribué à l\'arrivée'); ?></span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="label">Arrivée:</span>
-                    <span class="value"><?php echo htmlspecialchars($reservation['check_in_date']); ?></span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="label">Départ:</span>
-                    <span class="value"><?php echo htmlspecialchars($reservation['check_out_date']); ?></span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="label">Nombre d'adultes:</span>
-                    <span class="value"><?php echo htmlspecialchars($reservation['adults']); ?></span>
-                </div>
-                
-                <div class="detail-item">
-                    <span class="label">Prix total:</span>
-                    <span class="value price"><?php echo htmlspecialchars($reservation['price_total']) . ' €'; ?></span>
-                </div>
+    <?php include 'includes/header.php'; ?>
+    
+    <main class="container">
+        <div class="confirmation-container">
+            <div class="confirmation-header">
+                <i class="fas fa-check-circle"></i>
+                <h1>Réservation confirmée</h1>
+                <p>Votre réservation a été effectuée avec succès!</p>
             </div>
             
-            <?php if (!empty($reservation['special_requests'])): ?>
-            <div class="special-requests">
-                <h4>Demandes spéciales:</h4>
-                <p><?php echo nl2br(htmlspecialchars($reservation['special_requests'])); ?></p>
-            </div>
-            <?php endif; ?>
-
-            <div class="payment-info">
-                <h4>Statut du paiement:</h4>
-                <p class="payment-status pending">En attente</p>
-                <p>Vous devrez régler votre séjour à l'arrivée à l'hôtel.</p>
-            </div>
-        </div>
-        
-        <div class="actions">
-            <a href="../index.html" class="btn btn-secondary"><i class="fas fa-home"></i> Retour à l'accueil</a>
-            <button onclick="window.print()" class="btn btn-primary"><i class="fas fa-print"></i> Imprimer la confirmation</button>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>BookMyStay</h3>
-                <p>Votre partenaire pour des séjours inoubliables partout dans le monde.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Liens utiles</h3>
-                <ul>
-                    <li><a href="../hotels.html">Hôtels</a></li>
-                    <li><a href="../reservations.html">Réservations</a></li>
-                    <li><a href="../promotions.html">Promotions</a></li>
-                    <li><a href="../contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Suivez-nous</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <div class="reservation-details">
+                <div class="reservation-code">
+                    <span>Code de réservation:</span>
+                    <strong><?php echo htmlspecialchars($reservation['reservation_code']); ?></strong>
+                </div>
+                
+                <div class="detail-section">
+                    <h2>Détails de l'hôtel</h2>
+                    <div class="hotel-info">
+                        <h3><?php echo htmlspecialchars($reservation['hotel_name']); ?></h3>
+                        <p><i class="fas fa-map-marker-alt"></i> <?php echo htmlspecialchars($reservation['hotel_address']); ?>, <?php echo htmlspecialchars($reservation['hotel_city']); ?>, <?php echo htmlspecialchars($reservation['hotel_country']); ?></p>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h2>Détails du séjour</h2>
+                    <div class="detail-row">
+                        <span>Arrivée:</span>
+                        <strong><?php echo date('d/m/Y', strtotime($reservation['check_in_date'])); ?></strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Départ:</span>
+                        <strong><?php echo date('d/m/Y', strtotime($reservation['check_out_date'])); ?></strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Durée:</span>
+                        <strong><?php echo $reservation['nights']; ?> nuit(s)</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Chambre:</span>
+                        <strong><?php echo htmlspecialchars($reservation['room_type']) . ' (n°' . htmlspecialchars($reservation['room_number']) . ')'; ?></strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Voyageurs:</span>
+                        <strong><?php echo $reservation['adults']; ?> adulte(s)</strong>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h2>Détails de paiement</h2>
+                    <div class="detail-row">
+                        <span>Prix par nuit:</span>
+                        <strong><?php echo number_format($reservation['price_per_night'], 2); ?>€</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Taxes:</span>
+                        <strong><?php echo number_format($reservation['price_total'] * 0.1, 2); ?>€</strong>
+                    </div>
+                    <div class="detail-row total">
+                        <span>Total:</span>
+                        <strong><?php echo number_format($reservation['price_total'], 2); ?>€</strong>
+                    </div>
+                    <div class="payment-status">
+                        <span class="badge-pending">Paiement en attente</span>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h2>Coordonnées</h2>
+                    <div class="detail-row">
+                        <span>Nom:</span>
+                        <strong><?php echo htmlspecialchars($reservation['guest_name']); ?></strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Email:</span>
+                        <strong><?php echo htmlspecialchars($reservation['guest_email']); ?></strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Téléphone:</span>
+                        <strong><?php echo htmlspecialchars($reservation['guest_phone']); ?></strong>
+                    </div>
+                </div>
+                
+                <?php if (!empty($reservation['special_requests'])): ?>
+                <div class="detail-section">
+                    <h2>Demandes spéciales</h2>
+                    <p><?php echo nl2br(htmlspecialchars($reservation['special_requests'])); ?></p>
+                </div>
+                <?php endif; ?>
+                
+                <div class="confirmation-actions">
+                    <a href="index.php" class="btn-primary">Retour à l'accueil</a>
+                    <a href="#" class="btn-secondary" onclick="window.print()">Imprimer</a>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 BookMyStay. Tous droits réservés.</p>
-        </div>
-    </footer>
+    </main>
+    
+    <?php include 'includes/footer.php'; ?>
+    
+    <script>
+        // Script pour envoyer un e-mail de confirmation (simulation)
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Un email de confirmation a été envoyé à <?php echo htmlspecialchars($reservation['guest_email']); ?>");
+        });
+    </script>
 </body>
 </html>
+
+<?php
+// Effacer les données de réservation une fois la page affichée
+// unset($_SESSION['reservation']);
+?>

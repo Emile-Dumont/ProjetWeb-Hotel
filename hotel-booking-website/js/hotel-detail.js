@@ -1,206 +1,352 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialiser l'authentification
-    if (typeof initAuth === 'function') {
-        initAuth();
-    }
+    // Configuration
+    const hotelsPerPage = 3;
+    let currentPage = 1;
     
-    // Galerie d'images
-    const mainImage = document.getElementById('main-gallery-image');
-    const thumbs = document.querySelectorAll('.thumb');
-    const zoomIcon = document.getElementById('zoom-image');
-    const lightbox = document.getElementById('image-lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const lightboxCaption = document.getElementById('lightbox-caption');
-    const lightboxClose = document.getElementById('lightbox-close');
-    const prevButton = document.getElementById('prev-image');
-    const nextButton = document.getElementById('next-image');
-    const lightboxPrev = document.getElementById('lightbox-prev');
-    const lightboxNext = document.getElementById('lightbox-next');
-    const currentImageNum = document.getElementById('current-image');
-    const totalImages = document.getElementById('total-images');
-    
-    let currentIndex = 0;
-    
-    // Initialisation du compteur d'images
-    if (totalImages) {
-        totalImages.textContent = thumbs.length;
-    }
-    
-    // Fonction pour précharger les images
-    function preloadImages() {
-        thumbs.forEach(thumb => {
-            const img = new Image();
-            img.src = thumb.getAttribute('data-src');
-        });
-    }
-    
-    // Précharger les images pour améliorer la qualité d'affichage
-    preloadImages();
-    
-    // Fonction pour changer l'image principale
-    function changeMainImage(index) {
-        thumbs.forEach(thumb => thumb.classList.remove('active'));
-        thumbs[index].classList.add('active');
-        
-        // Créer une nouvelle image et la remplacer seulement quand elle est chargée
-        const newImg = new Image();
-        newImg.onload = function() {
-            mainImage.src = this.src;
-        };
-        newImg.src = thumbs[index].getAttribute('data-src');
-        
-        currentIndex = index;
-        
-        if (currentImageNum) {
-            currentImageNum.textContent = index + 1;
+    // Liste complète des hôtels (données simulées)
+    const allHotels = [
+        {
+            id: 1,
+            name: "Hôtel Luxe Paris",
+            location: "Paris, France",
+            image: "assets/images/hotels/hotelparis.jpeg",
+            price: 180,
+            originalPrice: 225,
+            rating: 4.5,
+            reviews: 120,
+            amenities: ["WiFi", "Piscine", "Restaurant"],
+            badge: "-20%"
+        },
+        {
+            id: 2,
+            name: "Resort Méditerranée",
+            location: "Nice, France",
+            image: "assets/images/hotels/hotelmed.jpg",
+            price: 210,
+            rating: 4.0,
+            reviews: 87,
+            amenities: ["WiFi", "Piscine", "Spa"]
+        },
+        {
+            id: 3,
+            name: "Chalet Alpin",
+            location: "Chamonix, France",
+            image: "assets/images/hotels/chaletalpin.jpg",
+            price: 245,
+            rating: 5.0,
+            reviews: 45,
+            amenities: ["WiFi", "Vue montagne", "Cheminée"],
+            badge: "Nouveau"
+        },
+        // Ajout de nouveaux hôtels pour tester la pagination
+        {
+            id: 4,
+            name: "Hôtel du Port",
+            location: "Marseille, France",
+            image: "assets/images/hotels/hotelparis.jpeg", // Réutilisation d'image à des fins de démo
+            price: 165,
+            rating: 3.5,
+            reviews: 68,
+            amenities: ["WiFi", "Vue mer", "Bar"]
+        },
+        {
+            id: 5,
+            name: "Le Grand Palace",
+            location: "Lyon, France",
+            image: "assets/images/hotels/hotelmed.jpg", // Réutilisation d'image à des fins de démo
+            price: 230,
+            originalPrice: 270,
+            rating: 4.8,
+            reviews: 132,
+            amenities: ["WiFi", "Spa", "Restaurant"],
+            badge: "-15%"
+        },
+        {
+            id: 6,
+            name: "Résidence Les Oliviers",
+            location: "Aix-en-Provence, France",
+            image: "assets/images/hotels/chaletalpin.jpg", // Réutilisation d'image à des fins de démo
+            price: 175,
+            rating: 4.2,
+            reviews: 91,
+            amenities: ["WiFi", "Piscine", "Parking"]
+        },
+        {
+            id: 7,
+            name: "Auberge de la Forêt",
+            location: "Strasbourg, France",
+            image: "assets/images/hotels/hotelparis.jpeg", // Réutilisation d'image à des fins de démo
+            price: 120,
+            rating: 3.8,
+            reviews: 45,
+            amenities: ["WiFi", "Restaurant", "Jardin"]
+        },
+        {
+            id: 8,
+            name: "Hôtel de la Plage",
+            location: "Biarritz, France",
+            image: "assets/images/hotels/hotelmed.jpg", // Réutilisation d'image à des fins de démo
+            price: 195,
+            rating: 4.3,
+            reviews: 76,
+            amenities: ["WiFi", "Vue mer", "Bar"],
+            badge: "Populaire"
+        },
+        {
+            id: 9,
+            name: "Château des Vignes",
+            location: "Bordeaux, France",
+            image: "assets/images/hotels/chaletalpin.jpg", // Réutilisation d'image à des fins de démo
+            price: 290,
+            originalPrice: 320,
+            rating: 4.7,
+            reviews: 104,
+            amenities: ["WiFi", "Dégustation", "Spa"],
+            badge: "-10%"
         }
-    }
+    ];
     
-    // Ajouter les écouteurs d'événements aux miniatures
-    thumbs.forEach((thumb, index) => {
-        thumb.addEventListener('click', () => {
-            changeMainImage(index);
-        });
-    });
+    // Calculer le nombre total de pages
+    const totalPages = Math.ceil(allHotels.length / hotelsPerPage);
     
-    // Navigation avec les flèches
-    if (prevButton) {
-        prevButton.addEventListener('click', () => {
-            let newIndex = currentIndex - 1;
-            if (newIndex < 0) newIndex = thumbs.length - 1;
-            changeMainImage(newIndex);
-        });
-    }
-    
-    if (nextButton) {
-        nextButton.addEventListener('click', () => {
-            let newIndex = currentIndex + 1;
-            if (newIndex >= thumbs.length) newIndex = 0;
-            changeMainImage(newIndex);
-        });
-    }
-    
-    // Zoom (ouverture de la lightbox)
-    if (zoomIcon) {
-        zoomIcon.addEventListener('click', () => {
-            lightboxImg.src = mainImage.src;
-            lightboxCaption.textContent = thumbs[currentIndex].getAttribute('data-caption') || '';
-            lightbox.classList.add('active');
-        });
-    }
-    
-    // Fermeture de la lightbox
-    if (lightboxClose) {
-        lightboxClose.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-        });
-    }
-    
-    // Navigation dans la lightbox
-    if (lightboxPrev) {
-        lightboxPrev.addEventListener('click', () => {
-            let newIndex = currentIndex - 1;
-            if (newIndex < 0) newIndex = thumbs.length - 1;
-            changeMainImage(newIndex);
-            lightboxImg.src = thumbs[newIndex].getAttribute('data-src');
-            lightboxCaption.textContent = thumbs[newIndex].getAttribute('data-caption') || '';
-        });
-    }
-    
-    if (lightboxNext) {
-        lightboxNext.addEventListener('click', () => {
-            let newIndex = currentIndex + 1;
-            if (newIndex >= thumbs.length) newIndex = 0;
-            changeMainImage(newIndex);
-            lightboxImg.src = thumbs[newIndex].getAttribute('data-src');
-            lightboxCaption.textContent = thumbs[newIndex].getAttribute('data-caption') || '';
-        });
-    }
-    
-    // Fermer la lightbox en cliquant en dehors de l'image
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            lightbox.classList.remove('active');
-        }
-    });
-    
-    // Touches du clavier pour la navigation
-    document.addEventListener('keydown', (e) => {
-        if (lightbox.classList.contains('active')) {
-            if (e.key === 'Escape') {
-                lightbox.classList.remove('active');
-            } else if (e.key === 'ArrowLeft') {
-                lightboxPrev.click();
-            } else if (e.key === 'ArrowRight') {
-                lightboxNext.click();
+    // Fonction pour générer l'HTML d'un hôtel
+    function generateHotelHTML(hotel) {
+        let starsHTML = '';
+        const fullStars = Math.floor(hotel.rating);
+        const hasHalfStar = hotel.rating % 1 >= 0.5;
+        
+        for (let i = 1; i <= 5; i++) {
+            if (i <= fullStars) {
+                starsHTML += '<i class="fas fa-star"></i>';
+            } else if (i === fullStars + 1 && hasHalfStar) {
+                starsHTML += '<i class="fas fa-star-half-alt"></i>';
+            } else {
+                starsHTML += '<i class="far fa-star"></i>';
             }
         }
-    });
+        
+        return `
+            <div class="hotel-card">
+                <div class="hotel-image">
+                    <img src="${hotel.image}" alt="${hotel.name}">
+                    ${hotel.badge ? `<div class="hotel-badge ${hotel.badge === 'Nouveau' ? 'new' : ''}">${hotel.badge}</div>` : ''}
+                </div>
+                <div class="hotel-info">
+                    <h3>${hotel.name}</h3>
+                    <div class="hotel-location"><i class="fas fa-map-marker-alt"></i> ${hotel.location}</div>
+                    <div class="hotel-rating">
+                        ${starsHTML}
+                        <span>(${hotel.reviews} avis)</span>
+                    </div>
+                    <div class="hotel-amenities">
+                        ${hotel.amenities.map(amenity => {
+                            let icon = 'fa-check';
+                            if (amenity === 'WiFi') icon = 'fa-wifi';
+                            if (amenity === 'Piscine') icon = 'fa-swimming-pool';
+                            if (amenity === 'Restaurant') icon = 'fa-utensils';
+                            if (amenity === 'Spa') icon = 'fa-spa';
+                            if (amenity === 'Vue montagne') icon = 'fa-snowflake';
+                            if (amenity === 'Cheminée') icon = 'fa-fire';
+                            if (amenity === 'Vue mer') icon = 'fa-water';
+                            if (amenity === 'Bar') icon = 'fa-glass-martini-alt';
+                            if (amenity === 'Parking') icon = 'fa-parking';
+                            if (amenity === 'Jardin') icon = 'fa-leaf';
+                            if (amenity === 'Dégustation') icon = 'fa-wine-glass-alt';
+                            
+                            return `<span><i class="fas ${icon}"></i> ${amenity}</span>`;
+                        }).join('')}
+                    </div>
+                    <div class="hotel-price">
+                        <span class="price">${hotel.price}€</span>
+                        <span class="per-night">/ nuit</span>
+                        ${hotel.originalPrice ? `<span class="original-price">${hotel.originalPrice}€</span>` : ''}
+                    </div>
+                    <a href="hotel-detail.html?id=${hotel.id}" class="btn btn-primary">Voir détails</a>
+                </div>
+            </div>
+        `;
+    }
     
-    // Formulaire de réservation
-    const checkInInput = document.getElementById('check-in');
-    const checkOutInput = document.getElementById('check-out');
-    
-    if (checkInInput && checkOutInput) {
-        // Définir la date d'aujourd'hui comme minimum pour l'arrivée
-        const today = new Date();
-        const tomorrow = new Date(today);
-        tomorrow.setDate(tomorrow.getDate() + 1);
+    // Fonction pour afficher les hôtels de la page courante
+    function displayHotelsForPage(page) {
+        const startIndex = (page - 1) * hotelsPerPage;
+        const endIndex = startIndex + hotelsPerPage;
+        const hotelsToShow = allHotels.slice(startIndex, endIndex);
         
-        const formattedToday = today.toISOString().split('T')[0];
-        const formattedTomorrow = tomorrow.toISOString().split('T')[0];
+        const hotelsList = document.getElementById('hotels-list');
+        hotelsList.innerHTML = '';
         
-        checkInInput.min = formattedToday;
-        checkInInput.value = formattedToday;
-        
-        checkOutInput.min = formattedTomorrow;
-        checkOutInput.value = formattedTomorrow;
-        
-        // Mettre à jour la date minimale de départ en fonction de la date d'arrivée
-        checkInInput.addEventListener('change', function() {
-            const newMinDate = new Date(this.value);
-            newMinDate.setDate(newMinDate.getDate() + 1);
-            const formattedNewMin = newMinDate.toISOString().split('T')[0];
-            
-            checkOutInput.min = formattedNewMin;
-            
-            if (new Date(checkOutInput.value) <= new Date(this.value)) {
-                checkOutInput.value = formattedNewMin;
-            }
-            
-            updatePriceSummary();
+        hotelsToShow.forEach(hotel => {
+            hotelsList.innerHTML += generateHotelHTML(hotel);
         });
         
-        checkOutInput.addEventListener('change', updatePriceSummary);
+        // Mettre à jour la pagination active
+        updatePagination(page);
+    }
+    
+    // Fonction pour mettre à jour l'affichage de la pagination
+    function updatePagination(currentPage) {
+        const paginationElement = document.querySelector('.pagination');
+        let paginationHTML = '';
         
-        // Mettre à jour le récapitulatif des prix
-        function updatePriceSummary() {
-            const checkIn = new Date(checkInInput.value);
-            const checkOut = new Date(checkOutInput.value);
-            const nights = Math.round((checkOut - checkIn) / (1000 * 60 * 60 * 24));
-            
-            const priceElement = document.querySelector('.room-price .price, .current-price');
-            let pricePerNight = 0;
-            
-            if (priceElement) {
-                pricePerNight = parseInt(priceElement.textContent.replace('€', ''), 10);
-            }
-            
-            const totalPrice = pricePerNight * nights;
-            
-            const priceSummary = document.querySelector('.price-summary');
-            if (priceSummary) {
-                const priceRow = priceSummary.querySelector('.price-row:not(.total)');
-                const totalRow = priceSummary.querySelector('.price-row.total');
+        // Bouton précédent
+        if (currentPage > 1) {
+            paginationHTML += `<a href="#" class="page-link prev" data-page="${currentPage - 1}"><i class="fas fa-angle-left"></i></a>`;
+        }
+        
+        // Pages numérotées
+        for (let i = 1; i <= totalPages; i++) {
+            paginationHTML += `<a href="#" class="page-link ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</a>`;
+        }
+        
+        // Bouton suivant
+        if (currentPage < totalPages) {
+            paginationHTML += `<a href="#" class="page-link next" data-page="${currentPage + 1}"><i class="fas fa-angle-right"></i></a>`;
+        }
+        
+        paginationElement.innerHTML = paginationHTML;
+        
+        // Ajouter des écouteurs d'événement aux liens de pagination
+        document.querySelectorAll('.pagination .page-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageNumber = parseInt(this.getAttribute('data-page'));
+                currentPage = pageNumber;
+                displayHotelsForPage(currentPage);
                 
-                if (priceRow && totalRow) {
-                    priceRow.innerHTML = `<span>${pricePerNight}€ x ${nights} nuit${nights > 1 ? 's' : ''}</span><span>${totalPrice}€</span>`;
-                    totalRow.innerHTML = `<span>Total</span><span>${totalPrice}€</span>`;
-                }
-            }
+                // Remonter en haut de la liste des hôtels
+                document.querySelector('.hotel-listing').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    }
+    
+    // Filtrer les hôtels par nom ou emplacement
+    document.getElementById('filter-btn').addEventListener('click', function() {
+        const searchTerm = document.getElementById('search').value.toLowerCase();
+        const priceFilter = document.getElementById('price-filter').value;
+        
+        let filteredHotels = [...allHotels];
+        
+        // Filtre par recherche
+        if (searchTerm) {
+            filteredHotels = filteredHotels.filter(hotel => 
+                hotel.name.toLowerCase().includes(searchTerm) || 
+                hotel.location.toLowerCase().includes(searchTerm)
+            );
         }
         
-        // Initial update
-        updatePriceSummary();
+        // Filtre par prix
+        if (priceFilter) {
+            filteredHotels = filteredHotels.filter(hotel => {
+                if (priceFilter === 'low') return hotel.price < 100;
+                if (priceFilter === 'medium') return hotel.price >= 100 && hotel.price < 200;
+                if (priceFilter === 'high') return hotel.price >= 200;
+                return true;
+            });
+        }
+        
+        // Mettre à jour le nombre total de pages basé sur les résultats filtrés
+        const newTotalPages = Math.ceil(filteredHotels.length / hotelsPerPage);
+        
+        // Afficher le message si aucun hôtel ne correspond aux critères
+        if (filteredHotels.length === 0) {
+            document.getElementById('hotels-list').innerHTML = 
+                '<div class="no-results">Aucun hôtel ne correspond à vos critères. Veuillez essayer une autre recherche.</div>';
+            document.querySelector('.pagination').innerHTML = '';
+            return;
+        }
+        
+        // Afficher la première page des résultats filtrés
+        currentPage = 1;
+        
+        const startIndex = 0;
+        const endIndex = Math.min(hotelsPerPage, filteredHotels.length);
+        const hotelsToShow = filteredHotels.slice(startIndex, endIndex);
+        
+        const hotelsList = document.getElementById('hotels-list');
+        hotelsList.innerHTML = '';
+        
+        hotelsToShow.forEach(hotel => {
+            hotelsList.innerHTML += generateHotelHTML(hotel);
+        });
+        
+        // Mettre à jour la pagination
+        let paginationHTML = '';
+        
+        // Bouton précédent (désactivé sur la première page)
+        paginationHTML += `<a href="#" class="page-link prev disabled"><i class="fas fa-angle-left"></i></a>`;
+        
+        // Pages numérotées
+        for (let i = 1; i <= newTotalPages; i++) {
+            paginationHTML += `<a href="#" class="page-link ${i === 1 ? 'active' : ''}" data-page="${i}">${i}</a>`;
+        }
+        
+        // Bouton suivant (si plus d'une page)
+        if (newTotalPages > 1) {
+            paginationHTML += `<a href="#" class="page-link next" data-page="2"><i class="fas fa-angle-right"></i></a>`;
+        } else {
+            paginationHTML += `<a href="#" class="page-link next disabled"><i class="fas fa-angle-right"></i></a>`;
+        }
+        
+        document.querySelector('.pagination').innerHTML = paginationHTML;
+        
+        // Ajouter des écouteurs d'événements aux liens de pagination
+        addPaginationEventListeners(filteredHotels);
+    });
+    
+    function addPaginationEventListeners(hotelsArray) {
+        document.querySelectorAll('.pagination .page-link:not(.disabled)').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pageNumber = parseInt(this.getAttribute('data-page'));
+                
+                const startIndex = (pageNumber - 1) * hotelsPerPage;
+                const endIndex = Math.min(startIndex + hotelsPerPage, hotelsArray.length);
+                const hotelsToShow = hotelsArray.slice(startIndex, endIndex);
+                
+                const hotelsList = document.getElementById('hotels-list');
+                hotelsList.innerHTML = '';
+                
+                hotelsToShow.forEach(hotel => {
+                    hotelsList.innerHTML += generateHotelHTML(hotel);
+                });
+                
+                // Mettre à jour la pagination active
+                document.querySelectorAll('.pagination .page-link').forEach(pageLink => {
+                    pageLink.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Mettre à jour les boutons précédent/suivant
+                const prevButton = document.querySelector('.pagination .prev');
+                const nextButton = document.querySelector('.pagination .next');
+                
+                if (pageNumber === 1) {
+                    prevButton.classList.add('disabled');
+                    prevButton.removeAttribute('data-page');
+                } else {
+                    prevButton.classList.remove('disabled');
+                    prevButton.setAttribute('data-page', pageNumber - 1);
+                }
+                
+                if (pageNumber === Math.ceil(hotelsArray.length / hotelsPerPage)) {
+                    nextButton.classList.add('disabled');
+                    nextButton.removeAttribute('data-page');
+                } else {
+                    nextButton.classList.remove('disabled');
+                    nextButton.setAttribute('data-page', pageNumber + 1);
+                }
+                
+                // Remonter en haut de la liste des hôtels
+                document.querySelector('.hotel-listing').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     }
+    
+    // Initial display
+    displayHotelsForPage(currentPage);
 });
