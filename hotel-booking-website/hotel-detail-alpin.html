@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chalet Alpin | Trip'ISEN</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/hotel-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Trip'<span class="logo-highlight">ISEN</span></span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="active"><a href="hotels.html"><i class="fas fa-hotel"></i> Hôtels</a></li>
+                <li><a href="reservations.html"><i class="fas fa-calendar-check"></i> Réservations</a></li>
+                <li><a href="promotions.html"><i class="fas fa-percent"></i> Promotions</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <!-- Cette partie sera modifiée dynamiquement par JavaScript -->
+                <div id="guest-actions">
+                    <a href="login.html" class="login-btn"><i class="fas fa-user"></i> Connexion</a>
+                </div>
+                <div id="user-actions" style="display: none;">
+                    <div class="user-dropdown">
+                        <button class="user-dropdown-btn">
+                            <i class="fas fa-user-circle"></i> <span id="username">Utilisateur</span> <i class="fas fa-caret-down"></i>
+                        </button>
+                        <div class="user-dropdown-content">
+                            <a href="profile.html"><i class="fas fa-id-card"></i> Mon profil</a>
+                            <a href="reservations.html"><i class="fas fa-list"></i> Mes réservations</a>
+                            <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-detail">
+        <div class="hero-images">
+            <div class="main-image">
+                <img src="assets/images/hotels/chaletalpin.jpg" alt="Chalet Alpin" id="main-gallery-image">
+                <div class="zoom-icon" id="zoom-image">
+                    <i class="fas fa-search-plus"></i>
+                </div>
+                <div class="image-counter"><span id="current-image">1</span>/<span id="total-images">5</span></div>
+                <div class="navigation-arrows">
+                    <div class="nav-arrow prev" id="prev-image">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="nav-arrow next" id="next-image">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="thumbnail-container">
+                <div class="thumbnail-images">
+                    <img src="assets/images/hotels/chaletalpin.jpg" alt="Chalet Alpin - Vue extérieure" class="thumb active" data-src="assets/images/hotels/chaletalpin.jpg" data-caption="Vue extérieure du Chalet Alpin">
+                    <img src="assets/images/hotels/chambre_alpin.jpg" alt="Chambre du Chalet Alpin" class="thumb" data-src="assets/images/hotels/chambre_alpin.jpg" data-caption="Chambre Confort avec vue montagne">
+                    <img src="assets/images/hotels/salon_alpin.jpg" alt="Salon du Chalet Alpin" class="thumb" data-src="assets/images/hotels/salon_alpin.jpg" data-caption="Salon avec cheminée">
+                    <img src="assets/images/hotels/spa_alpin.jpg" alt="Spa du Chalet Alpin" class="thumb" data-src="assets/images/hotels/spa_alpin.jpg" data-caption="Spa et sauna privatif">
+                    <img src="assets/images/hotels/terrasse_alpin.jpg" alt="Terrasse du Chalet Alpin" class="thumb" data-src="assets/images/hotels/terrasse_alpin.jpg" data-caption="Terrasse panoramique avec vue sur le Mont-Blanc">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox pour les images en plein écran -->
+    <div class="lightbox" id="image-lightbox">
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image" id="lightbox-img">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-nav">
+                <div class="lightbox-arrow" id="lightbox-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="lightbox-arrow" id="lightbox-next">
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+        <div class="lightbox-close" id="lightbox-close">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hotel-detail-wrapper">
+            <div class="hotel-main">
+                <div class="hotel-header">
+                    <div>
+                        <h1>Chalet Alpin</h1>
+                        <div class="hotel-location">
+                            <i class="fas fa-map-marker-alt"></i> 45 Route des Pistes, 74400 Chamonix-Mont-Blanc, France
+                        </div>
+                        <div class="hotel-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(45 avis)</span>
+                        </div>
+                    </div>
+                    <div class="hotel-price-badge">
+                        <span class="current-price">245€</span>
+                        <div class="price-per-night">par nuit</div>
+                    </div>
+                </div>
+
+                <div class="section description">
+                    <h2>À propos du chalet</h2>
+                    <p>Perché à 1 850 mètres d'altitude, au cœur du domaine skiable de Chamonix-Mont-Blanc, le Chalet Alpin vous offre une expérience authentique de montagne alliée au luxe moderne. Notre établissement 5 étoiles combine le charme traditionnel d'un chalet savoyard avec des prestations haut de gamme pour un séjour inoubliable face aux sommets enneigés.</p>
+                    
+                    <p>Le chalet dispose de 12 chambres et suites intimistes, toutes décorées avec des matériaux nobles comme le bois et la pierre, dans un style montagnard contemporain. Chaque hébergement offre une vue spectaculaire sur le massif du Mont-Blanc ou la vallée de Chamonix, et certaines suites sont équipées de cheminées et de jacuzzis privatifs.</p>
+                    
+                    <p>Profitez de notre cuisine alpine gastronomique au restaurant "La Table des Sommets", de notre bar à vin et fromages, de notre espace bien-être avec spa, sauna et hammam, et de notre service de navette privée vers les remontées mécaniques. En hiver comme en été, notre équipe de passionnés de montagne est là pour vous guider vers les meilleures expériences que peuvent offrir les Alpes françaises.</p>
+                    
+                    <div class="special-notice">
+                        <i class="fas fa-info-circle"></i>
+                        <p><strong>Nouveau :</strong> Possibilité de louer l'intégralité du chalet pour des groupes, événements privés ou réunions familiales (jusqu'à 24 personnes).</p>
+                    </div>
+                </div>
+
+                <div class="section amenities">
+                    <h2>Équipements et services</h2>
+                    <div class="amenities-grid">
+                        <div class="amenity-item">
+                            <i class="fas fa-wifi"></i>
+                            <span>WiFi gratuit</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-hot-tub"></i>
+                            <span>Jacuzzi extérieur</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-spa"></i>
+                            <span>Spa & Sauna</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurant gastronomique</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-wine-glass-alt"></i>
+                            <span>Bar à vin</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-fire"></i>
+                            <span>Cheminée</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-parking"></i>
+                            <span>Parking privé</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-snowflake"></i>
+                            <span>Local à ski chauffé</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-shuttle-van"></i>
+                            <span>Navette ski gratuite</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-hiking"></i>
+                            <span>Guide de montagne</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Service de conciergerie</span>
+                        </div>
+                        <div class="amenity-item">
+                            <i class="fas fa-shoe-prints"></i>
+                            <span>Prêt de raquettes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section rooms">
+                    <h2>Options d'hébergement</h2>
+                    <div class="booking-options-tabs">
+                        <button class="booking-tab active" data-target="individual-rooms">Chambres individuelles</button>
+                        <button class="booking-tab" data-target="entire-chalet">Chalet complet</button>
+                    </div>
+                    
+                    <div id="individual-rooms" class="booking-option-content active">
+                        <div class="rooms-grid">
+                            <div class="room-card">
+                                <img src="assets/images/hotels/chambre_alpin.jpg" alt="Chambre Confort">
+                                <div class="room-info">
+                                    <h3>Chambre Confort</h3>
+                                    <p>Chambre chaleureuse de 30m² avec lit queen-size, balcon et vue sur la vallée de Chamonix.</p>
+                                    <div class="room-features">
+                                        <span><i class="fas fa-user"></i> 2 personnes</span>
+                                        <span><i class="fas fa-bed"></i> 1 lit queen-size</span>
+                                        <span><i class="fas fa-arrows-alt-h"></i> 30m²</span>
+                                    </div>
+                                    <div class="room-price">
+                                        <span class="price">245€</span>
+                                        <span class="per-night">/ nuit</span>
+                                    </div>
+                                    <a href="reservation.html?hotel=alpin&room=confort" class="btn btn-primary">Réserver</a>
+                                </div>
+                            </div>
+                            <div class="room-card">
+                                <img src="assets/images/hotels/suite_alpine.jpg" alt="Suite Alpine">
+                                <div class="room-info">
+                                    <h3>Suite Alpine</h3>
+                                    <p>Suite spacieuse de 50m² avec lit king-size, salon avec cheminée et vue panoramique sur le Mont-Blanc.</p>
+                                    <div class="room-features">
+                                        <span><i class="fas fa-user"></i> 2 personnes</span>
+                                        <span><i class="fas fa-bed"></i> 1 lit king-size</span>
+                                        <span><i class="fas fa-arrows-alt-h"></i> 50m²</span>
+                                    </div>
+                                    <div class="room-price">
+                                        <span class="price">380€</span>
+                                        <span class="per-night">/ nuit</span>
+                                    </div>
+                                    <a href="reservation.html?hotel=alpin&room=suite" class="btn btn-primary">Réserver</a>
+                                </div>
+                            </div>
+                            <div class="room-card">
+                                <img src="assets/images/hotels/appartement_alpin.jpg" alt="Appartement Familial">
+                                <div class="room-info">
+                                    <h3>Appartement Familial</h3>
+                                    <p>Appartement de 80m² avec 2 chambres, cuisine équipée, salon avec cheminée et terrasse privative.</p>
+                                    <div class="room-features">
+                                        <span><i class="fas fa-user"></i> 6 personnes</span>
+                                        <span><i class="fas fa-bed"></i> 2 lits doubles + 2 lits simples</span>
+                                        <span><i class="fas fa-arrows-alt-h"></i> 80m²</span>
+                                    </div>
+                                    <div class="room-price">
+                                        <span class="price">520€</span>
+                                        <span class="per-night">/ nuit</span>
+                                    </div>
+                                    <a href="reservation.html?hotel=alpin&room=appartement" class="btn btn-primary">Réserver</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="entire-chalet" class="booking-option-content">
+                        <div class="entire-chalet-card">
+                            <div class="chalet-images">
+                                <img src="assets/images/hotels/chalet_complet.jpg" alt="Chalet Alpin Complet">
+                                <div class="chalet-thumbnails">
+                                    <img src="assets/images/hotels/chalet_salon.jpg" alt="Grand salon">
+                                    <img src="assets/images/hotels/chalet_cuisine.jpg" alt="Cuisine équipée">
+                                    <img src="assets/images/hotels/chalet_terrasse.jpg" alt="Terrasse panoramique">
+                                </div>
+                            </div>
+                            <div class="chalet-info">
+                                <h3>Location complète du Chalet Alpin</h3>
+                                <p>Profitez de l'exclusivité en réservant l'intégralité de notre chalet pour votre groupe. Idéal pour les réunions familiales, les événements privés ou les séjours entre amis.</p>
+                                
+                                <div class="chalet-features">
+                                    <div class="feature-item">
+                                        <i class="fas fa-users"></i>
+                                        <div>
+                                            <h4>Capacité</h4>
+                                            <p>Jusqu'à 24 personnes</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-home"></i>
+                                        <div>
+                                            <h4>Surface</h4>
+                                            <p>580m² sur 3 niveaux</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-bed"></i>
+                                        <div>
+                                            <h4>Chambres</h4>
+                                            <p>12 chambres (8 doubles, 4 suites)</p>
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-utensils"></i>
+                                        <div>
+                                            <h4>Service</h4>
+                                            <p>Possibilité de chef privé</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="chalet-details">
+                                    <h4>Ce que comprend la location complète :</h4>
+                                    <ul>
+                                        <li>Accès privatif à l'ensemble du chalet et ses installations</li>
+                                        <li>Service de conciergerie dédié 24h/24</li>
+                                        <li>Petit-déjeuner alpin servi chaque matin</li>
+                                        <li>Ménage quotidien et service de couverture</li>
+                                        <li>Accès illimité à l'espace bien-être (spa, sauna, hammam)</li>
+                                        <li>Navette privée pour les remontées mécaniques</li>
+                                        <li>Casiers à ski chauffés et équipement de base</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="chalet-price">
+                                    <div class="price-details">
+                                        <span class="price">4 800€</span>
+                                        <span class="per-night">/ nuit</span>
+                                        <span class="min-stay">(minimum 3 nuits)</span>
+                                    </div>
+                                    <a href="reservation.html?hotel=alpin&room=full_chalet" class="btn btn-primary">Demander un devis</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section reviews">
+                    <h2>Avis des clients</h2>
+                    <div class="review-summary">
+                        <div class="review-score">
+                            <span class="score">4.9</span>
+                            <div class="score-text">
+                                <div class="score-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p>Basé sur 45 avis</p>
+                            </div>
+                        </div>
+                        <div class="review-categories">
+                            <div class="review-category">
+                                <span class="category-name">Propreté</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 98%"></div>
+                                </div>
+                                <span class="category-score">4.9</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Confort</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 100%"></div>
+                                </div>
+                                <span class="category-score">5.0</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Emplacement</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 96%"></div>
+                                </div>
+                                <span class="category-score">4.8</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Service</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 98%"></div>
+                                </div>
+                                <span class="category-score">4.9</span>
+                            </div>
+                            <div class="review-category">
+                                <span class="category-name">Rapport qualité-prix</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 92%"></div>
+                                </div>
+                                <span class="category-score">4.6</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-list">
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Marie L.">
+                                <div>
+                                    <h4>Marie L.</h4>
+                                    <span class="review-date">Séjour en février 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="review-text">"Un séjour de rêve ! Le chalet est magnifique, l'ambiance y est chaleureuse et authentique. Notre suite avec vue sur le Mont-Blanc était exceptionnelle, et nous avons particulièrement apprécié le jacuzzi sur la terrasse après nos journées de ski. Le restaurant propose une cuisine locale raffinée et le personnel est aux petits soins. Nous reviendrons sans hésitation !"</p>
+                            </div>
+                        </div>
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Laurent P.">
+                                <div>
+                                    <h4>Laurent P.</h4>
+                                    <span class="review-date">Séjour en janvier 2023</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="review-text">"Parfait pour un séjour au ski ! Le chalet est idéalement situé, la navette pour les pistes est très pratique. La chambre était confortable et bien chauffée. Le personnel est attentionné et les petits déjeuners sont copieux et variés. Le spa est un vrai plus après une journée sur les pistes ! Expérience 5 étoiles."</p>
+                            </div>
+                        </div>
+                        <div class="review-item">
+                            <div class="reviewer">
+                                <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Camille G.">
+                                <div>
+                                    <h4>Camille G.</h4>
+                                    <span class="review-date">Séjour en août 2022</span>
+                                </div>
+                            </div>
+                            <div class="review-content">
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <p class="review-text">"Nous avons séjourné en été et c'était une expérience formidable. Les randonnées autour du chalet sont superbes et l'équipe nous a fourni d'excellents conseils pour nos sorties. L'appartement familial était parfait pour nous cinq, spacieux et très bien équipé. Le seul petit bémol serait le prix des repas au restaurant, un peu élevé, mais la qualité est au rendez-vous. Un havre de paix en montagne !"</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="view-more-reviews">
+                        <a href="#" class="btn btn-secondary">Voir tous les avis</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hotel-sidebar">
+                <div class="booking-form">
+                    <h3>Réserver votre séjour</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="booking-type">Type de réservation</label>
+                            <select id="booking-type" name="booking-type">
+                                <option value="room">Chambre individuelle</option>
+                                <option value="chalet">Chalet complet</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="check-in">Arrivée</label>
+                            <input type="date" id="check-in" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="check-out">Départ</label>
+                            <input type="date" id="check-out" required>
+                        </div>
+                        
+                        <div id="room-options">
+                            <div class="form-group">
+                                <label for="guests">Voyageurs</label>
+                                <div class="guests-select">
+                                    <select id="guests">
+                                        <option value="1">1 adulte</option>
+                                        <option value="2" selected>2 adultes</option>
+                                        <option value="3">3 adultes</option>
+                                        <option value="4">4 adultes</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="room-type">Type d'hébergement</label>
+                                <select id="room-type">
+                                    <option value="confort">Chambre Confort</option>
+                                    <option value="suite">Suite Alpine</option>
+                                    <option value="appartement">Appartement Familial</option>
+                                </select>
+                            </div>
+                            <div class="price-summary">
+                                <div class="price-row">
+                                    <span>245€ x 5 nuits</span>
+                                    <span>1225€</span>
+                                </div>
+                                <div class="price-row total">
+                                    <span>Total</span>
+                                    <span>1225€</span>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Réserver maintenant</button>
+                        </div>
+                        
+                        <div id="chalet-options" style="display: none;">
+                            <div class="form-group">
+                                <label for="group-size">Taille du groupe</label>
+                                <select id="group-size">
+                                    <option value="10">10-12 personnes</option>
+                                    <option value="16">13-16 personnes</option>
+                                    <option value="20">17-20 personnes</option>
+                                    <option value="24">21-24 personnes</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="special-requests">Demandes spéciales</label>
+                                <textarea id="special-requests" rows="3" placeholder="Précisez vos besoins (chef privé, événements, etc.)"></textarea>
+                            </div>
+                            <div class="price-summary">
+                                <div class="price-row">
+                                    <span>4800€ x 5 nuits</span>
+                                    <span>24000€</span>
+                                </div>
+                                <div class="price-row total">
+                                    <span>Total estimé</span>
+                                    <span>24000€</span>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Demander un devis</button>
+                        </div>
+                        
+                        <p class="booking-note">Vous ne serez pas débité aujourd'hui</p>
+                    </form>
+                </div>
+                
+                <div class="hotel-map">
+                    <h3>Emplacement</h3>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44447.59550691344!2d6.84914975!3d45.9166354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47894c062dfe5ab3%3A0x408ab2ae4baa380!2s74400%20Chamonix-Mont-Blanc!5e0!3m2!1sfr!2sfr!4v1649249357859!5m2!1sfr!2sfr" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <p class="map-info"><i class="fas fa-map-marker-alt"></i> 45 Route des Pistes, 74400 Chamonix-Mont-Blanc, France</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-section footer-about">
+                    <h3>Trip'ISEN</h3>
+                    <p>Votre partenaire pour des séjours inoubliables partout dans le monde. Nous vous aidons à trouver l'hébergement parfait depuis plus de 10 ans.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section footer-links">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="hotels.html">Hôtels</a></li>
+                        <li><a href="reservations.html">Réservations</a></li>
+                        <li><a href="promotions.html">Promotions</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-contact">
+                    <h3>Contactez-nous</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Rue de Paris, 75000 Paris</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@tripisen.fr</p>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Inscrivez-vous pour recevoir nos offres exclusives</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Trip'ISEN. Tous droits réservés.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                    <a href="#">CGU</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/hotel-detail.js"></script>
+    <script>
+        // Script pour gérer les onglets de réservation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion des onglets de type de chambre
+            const bookingTabs = document.querySelectorAll('.booking-tab');
+            bookingTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Retirer la classe active de tous les onglets
+                    bookingTabs.forEach(t => t.classList.remove('active'));
+                    // Ajouter la classe active à l'onglet cliqué
+                    this.classList.add('active');
+                    
+                    // Cacher tous les contenus
+                    document.querySelectorAll('.booking-option-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Afficher le contenu correspondant à l'onglet
+                    const targetId = this.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+            
+            // Gestion du sélecteur de type de réservation dans la sidebar
+            const bookingTypeSelect = document.getElementById('booking-type');
+            const roomOptions = document.getElementById('room-options');
+            const chaletOptions = document.getElementById('chalet-options');
+            
+            bookingTypeSelect.addEventListener('change', function() {
+                if (this.value === 'room') {
+                    roomOptions.style.display = 'block';
+                    chaletOptions.style.display = 'none';
+                } else {
+                    roomOptions.style.display = 'none';
+                    chaletOptions.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
