@@ -1,20 +1,26 @@
 <?php
-// Paramètres de connexion à la base de données
-$host = 'localhost';
-$db = 'hotel_booking_db';
-$user = 'root';         // Utilisateur par défaut de MAMP
-$password = 'root';     // Mot de passe par défaut de MAMP
-$port = '8889';         // Port MySQL par défaut de MAMP
+// php/db_connect.php
 
-// Établir la connexion
+// Paramètres de connexion à la base de données
+$host = "localhost";  // Généralement localhost
+$dbname = "tripisien"; // Utilisation de la base tripisien existante
+$username = "root";  // Nom d'utilisateur par défaut souvent root
+$password = "root";      // Mot de passe (vide par défaut pour XAMPP/WAMP)
+
+// Tentative de connexion à la base de données
 try {
-    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db;charset=utf8", $user, $password);
-    // Configuration pour afficher les erreurs SQL
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    
+    // Configuration des options PDO
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    // Configuration pour récupérer les résultats sous forme de tableau associatif
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    
 } catch (PDOException $e) {
-    // En cas d'erreur de connexion
-    die("Erreur de connexion à la base de données: " . $e->getMessage());
+    // Journalisation de l'erreur
+    error_log("Erreur de connexion à la base de données: " . $e->getMessage());
+    
+    // Message d'erreur convivial
+    die("Désolé, nous rencontrons un problème technique. Veuillez réessayer plus tard.");
 }
 ?>
