@@ -1,213 +1,206 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Gestion de la galerie d'images améliorée
+    // Initialiser l'authentification
+    if (typeof initAuth === 'function') {
+        initAuth();
+    }
+    
+    // Galerie d'images
     const mainImage = document.getElementById('main-gallery-image');
-    const thumbnails = document.querySelectorAll('.thumbnail-images .thumb');
-    const currentImageIndicator = document.getElementById('current-image');
-    const totalImagesIndicator = document.getElementById('total-images');
+    const thumbs = document.querySelectorAll('.thumb');
+    const zoomIcon = document.getElementById('zoom-image');
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.getElementById('lightbox-close');
     const prevButton = document.getElementById('prev-image');
     const nextButton = document.getElementById('next-image');
-    const zoomButton = document.getElementById('zoom-image');
+    const lightboxPrev = document.getElementById('lightbox-prev');
+    const lightboxNext = document.getElementById('lightbox-next');
+    const currentImageNum = document.getElementById('current-image');
+    const totalImages = document.getElementById('total-images');
     
-    // Variables de gestion de la galerie
-    let currentImageIndex = 0;
-    const totalImages = thumbnails.length;
+    let currentIndex = 0;
     
-    // Initialiser les indicateurs
-    totalImagesIndicator.textContent = totalImages;
-    currentImageIndicator.textContent = currentImageIndex + 1;
+    // Initialisation du compteur d'images
+    if (totalImages) {
+        totalImages.textContent = thumbs.length;
+    }
+    
+    // Fonction pour précharger les images
+    function preloadImages() {
+        thumbs.forEach(thumb => {
+            const img = new Image();
+            img.src = thumb.getAttribute('data-src');
+        });
+    }
+    
+    // Précharger les images pour améliorer la qualité d'affichage
+    preloadImages();
     
     // Fonction pour changer l'image principale
     function changeMainImage(index) {
-        // Mettre à jour l'image active
-        thumbnails.forEach((thumb, idx) => {
-            if (idx === index) {
-                thumb.classList.add('active');
-            } else {
-                thumb.classList.remove('active');
-            }
-        });
+        thumbs.forEach(thumb => thumb.classList.remove('active'));
+        thumbs[index].classList.add('active');
         
-        // Définir la nouvelle image
-        const newSrc = thumbnails[index].getAttribute('data-src');
-        const newAlt = thumbnails[index].getAttribute('alt');
+        // Créer une nouvelle image et la remplacer seulement quand elle est chargée
+        const newImg = new Image();
+        newImg.onload = function() {
+            mainImage.src = this.src;
+        };
+        newImg.src = thumbs[index].getAttribute('data-src');
         
-        // Animation de transition
-        mainImage.style.opacity = '0';
-        setTimeout(() => {
-            mainImage.src = newSrc;
-            mainImage.alt = newAlt;
-            mainImage.style.opacity = '1';
-            currentImageIndicator.textContent = index + 1;
-        }, 200);
+        currentIndex = index;
         
-        // Mettre à jour l'index courant
-        currentImageIndex = index;
+        if (currentImageNum) {
+            currentImageNum.textContent = index + 1;
+        }
     }
     
-    // Ajouter des événements de clic sur les miniatures
-    thumbnails.forEach((thumb, index) => {
-        thumb.addEventListener('click', function() {
+    // Ajouter les écouteurs d'événements aux miniatures
+    thumbs.forEach((thumb, index) => {
+        thumb.addEventListener('click', () => {
             changeMainImage(index);
         });
     });
     
-    // Navigation avec les boutons précédent/suivant
-    prevButton.addEventListener('click', function() {
-        const newIndex = (currentImageIndex - 1 + totalImages) % totalImages;
-        changeMainImage(newIndex);
-    });
-    
-    nextButton.addEventListener('click', function() {
-        const newIndex = (currentImageIndex + 1) % totalImages;
-        changeMainImage(newIndex);
-    });
-    
-    // Gestion du Lightbox
-    const lightbox = document.getElementById('image-lightbox');
-    const lightboxImage = document.getElementById('lightbox-img');
-    const lightboxCaption = document.getElementById('lightbox-caption');
-    const lightboxClose = document.getElementById('lightbox-close');
-    const lightboxPrev = document.getElementById('lightbox-prev');
-    const lightboxNext = document.getElementById('lightbox-next');
-    
-    // Fonction pour ouvrir le lightbox
-    function openLightbox(index) {
-        const src = thumbnails[index].getAttribute('data-src');
-        const caption = thumbnails[index].getAttribute('data-caption');
-        
-        lightboxImage.src = src;
-        lightboxCaption.textContent = caption || '';
-        
-        // Afficher le lightbox
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Empêcher le défilement
-        
-        // Mettre à jour l'index courant
-        currentImageIndex = index;
-    }
-    
-    // Fonction pour fermer le lightbox
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = ''; // Réactiver le défilement
-    }
-    
-    // Ouvrir le lightbox en cliquant sur l'icône de zoom ou sur l'image principale
-    zoomButton.addEventListener('click', function() {
-        openLightbox(currentImageIndex);
-    });
-    
-    mainImage.addEventListener('click', function() {
-        openLightbox(currentImageIndex);
-    });
-    
-    // Fermer le lightbox
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', function(e) {
-        // Fermer seulement si on clique en dehors du contenu
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    });
-    
-    // Navigation dans le lightbox
-    lightboxPrev.addEventListener('click', function() {
-        const newIndex = (currentImageIndex - 1 + totalImages) % totalImages;
-        currentImageIndex = newIndex;
-        
-        const src = thumbnails[newIndex].getAttribute('data-src');
-        const caption = thumbnails[newIndex].getAttribute('data-caption');
-        
-        lightboxImage.style.opacity = '0';
-        setTimeout(() => {
-            lightboxImage.src = src;
-            lightboxCaption.textContent = caption || '';
-            lightboxImage.style.opacity = '1';
-        }, 200);
-    });
-    
-    lightboxNext.addEventListener('click', function() {
-        const newIndex = (currentImageIndex + 1) % totalImages;
-        currentImageIndex = newIndex;
-        
-        const src = thumbnails[newIndex].getAttribute('data-src');
-        const caption = thumbnails[newIndex].getAttribute('data-caption');
-        
-        lightboxImage.style.opacity = '0';
-        setTimeout(() => {
-            lightboxImage.src = src;
-            lightboxCaption.textContent = caption || '';
-            lightboxImage.style.opacity = '1';
-        }, 200);
-    });
-    
-    // Navigation avec touches du clavier dans le lightbox
-    document.addEventListener('keydown', function(e) {
-        if (!lightbox.classList.contains('active')) return;
-        
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') lightboxPrev.click();
-        if (e.key === 'ArrowRight') lightboxNext.click();
-    });
-    
-    // Le reste de votre code existant pour la réservation
-    // Gestion du formulaire de réservation
-    const bookingForm = document.querySelector('.booking-form form');
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Récupérer les valeurs du formulaire
-            const checkIn = document.getElementById('check-in').value;
-            const checkOut = document.getElementById('check-out').value;
-            const guests = document.getElementById('guests').value;
-            const roomType = document.getElementById('room-type').value;
-            
-            // Ici, vous pourriez ajouter du code pour envoyer ces données à un serveur
-            // ou rediriger vers une page de confirmation
-            
-            console.log('Réservation:', { checkIn, checkOut, guests, roomType });
-            alert('Votre réservation a été effectuée avec succès !');
+    // Navigation avec les flèches
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            let newIndex = currentIndex - 1;
+            if (newIndex < 0) newIndex = thumbs.length - 1;
+            changeMainImage(newIndex);
         });
     }
     
-    // Calculer dynamiquement le prix total
-    const updatePriceCalculation = () => {
-        const checkIn = new Date(document.getElementById('check-in').value);
-        const checkOut = new Date(document.getElementById('check-out').value);
-        const roomType = document.getElementById('room-type').value;
-        
-        // Si les dates sont valides
-        if (checkIn && checkOut && checkIn < checkOut) {
-            const nights = Math.round((checkOut - checkIn) / (1000 * 60 * 60 * 24));
-            let pricePerNight = 180; // Prix par défaut pour chambre standard
-            
-            // Ajuster le prix selon le type de chambre
-            if (roomType === 'deluxe') pricePerNight = 250;
-            if (roomType === 'suite') pricePerNight = 400;
-            
-            const totalBeforeDiscount = pricePerNight * nights;
-            const discount = Math.round(totalBeforeDiscount * 0.2); // Réduction de 20%
-            const total = totalBeforeDiscount - discount;
-            
-            // Mettre à jour l'affichage du prix
-            const priceElements = document.querySelectorAll('.price-summary .price-row');
-            if (priceElements.length >= 3) {
-                priceElements[0].innerHTML = `<span>${pricePerNight}€ x ${nights} nuit${nights > 1 ? 's' : ''}</span><span>${totalBeforeDiscount}€</span>`;
-                priceElements[1].innerHTML = `<span>Réduction</span><span>-${discount}€</span>`;
-                priceElements[2].innerHTML = `<span>Total</span><span>${total}€</span>`;
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            let newIndex = currentIndex + 1;
+            if (newIndex >= thumbs.length) newIndex = 0;
+            changeMainImage(newIndex);
+        });
+    }
+    
+    // Zoom (ouverture de la lightbox)
+    if (zoomIcon) {
+        zoomIcon.addEventListener('click', () => {
+            lightboxImg.src = mainImage.src;
+            lightboxCaption.textContent = thumbs[currentIndex].getAttribute('data-caption') || '';
+            lightbox.classList.add('active');
+        });
+    }
+    
+    // Fermeture de la lightbox
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+    }
+    
+    // Navigation dans la lightbox
+    if (lightboxPrev) {
+        lightboxPrev.addEventListener('click', () => {
+            let newIndex = currentIndex - 1;
+            if (newIndex < 0) newIndex = thumbs.length - 1;
+            changeMainImage(newIndex);
+            lightboxImg.src = thumbs[newIndex].getAttribute('data-src');
+            lightboxCaption.textContent = thumbs[newIndex].getAttribute('data-caption') || '';
+        });
+    }
+    
+    if (lightboxNext) {
+        lightboxNext.addEventListener('click', () => {
+            let newIndex = currentIndex + 1;
+            if (newIndex >= thumbs.length) newIndex = 0;
+            changeMainImage(newIndex);
+            lightboxImg.src = thumbs[newIndex].getAttribute('data-src');
+            lightboxCaption.textContent = thumbs[newIndex].getAttribute('data-caption') || '';
+        });
+    }
+    
+    // Fermer la lightbox en cliquant en dehors de l'image
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.classList.remove('active');
+        }
+    });
+    
+    // Touches du clavier pour la navigation
+    document.addEventListener('keydown', (e) => {
+        if (lightbox.classList.contains('active')) {
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+            } else if (e.key === 'ArrowLeft') {
+                lightboxPrev.click();
+            } else if (e.key === 'ArrowRight') {
+                lightboxNext.click();
             }
         }
-    };
+    });
     
-    // Ajouter des écouteurs d'événements pour le prix
+    // Formulaire de réservation
     const checkInInput = document.getElementById('check-in');
     const checkOutInput = document.getElementById('check-out');
-    const roomTypeSelect = document.getElementById('room-type');
     
-    if (checkInInput && checkOutInput && roomTypeSelect) {
-        checkInInput.addEventListener('change', updatePriceCalculation);
-        checkOutInput.addEventListener('change', updatePriceCalculation);
-        roomTypeSelect.addEventListener('change', updatePriceCalculation);
+    if (checkInInput && checkOutInput) {
+        // Définir la date d'aujourd'hui comme minimum pour l'arrivée
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        const formattedToday = today.toISOString().split('T')[0];
+        const formattedTomorrow = tomorrow.toISOString().split('T')[0];
+        
+        checkInInput.min = formattedToday;
+        checkInInput.value = formattedToday;
+        
+        checkOutInput.min = formattedTomorrow;
+        checkOutInput.value = formattedTomorrow;
+        
+        // Mettre à jour la date minimale de départ en fonction de la date d'arrivée
+        checkInInput.addEventListener('change', function() {
+            const newMinDate = new Date(this.value);
+            newMinDate.setDate(newMinDate.getDate() + 1);
+            const formattedNewMin = newMinDate.toISOString().split('T')[0];
+            
+            checkOutInput.min = formattedNewMin;
+            
+            if (new Date(checkOutInput.value) <= new Date(this.value)) {
+                checkOutInput.value = formattedNewMin;
+            }
+            
+            updatePriceSummary();
+        });
+        
+        checkOutInput.addEventListener('change', updatePriceSummary);
+        
+        // Mettre à jour le récapitulatif des prix
+        function updatePriceSummary() {
+            const checkIn = new Date(checkInInput.value);
+            const checkOut = new Date(checkOutInput.value);
+            const nights = Math.round((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+            
+            const priceElement = document.querySelector('.room-price .price, .current-price');
+            let pricePerNight = 0;
+            
+            if (priceElement) {
+                pricePerNight = parseInt(priceElement.textContent.replace('€', ''), 10);
+            }
+            
+            const totalPrice = pricePerNight * nights;
+            
+            const priceSummary = document.querySelector('.price-summary');
+            if (priceSummary) {
+                const priceRow = priceSummary.querySelector('.price-row:not(.total)');
+                const totalRow = priceSummary.querySelector('.price-row.total');
+                
+                if (priceRow && totalRow) {
+                    priceRow.innerHTML = `<span>${pricePerNight}€ x ${nights} nuit${nights > 1 ? 's' : ''}</span><span>${totalPrice}€</span>`;
+                    totalRow.innerHTML = `<span>Total</span><span>${totalPrice}€</span>`;
+                }
+            }
+        }
+        
+        // Initial update
+        updatePriceSummary();
     }
 });

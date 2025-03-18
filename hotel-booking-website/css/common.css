@@ -134,6 +134,9 @@ a:hover {
     background-color: var(--dark);
     color: var(--white);
     padding: 4rem 0 0;
+    position: relative; /* Ajouté pour garantir un positionnement correct */
+    z-index: 1; /* Ajouté pour éviter les problèmes de superposition avec d'autres éléments */
+    margin-top: 2rem; /* Ajout d'une marge supplémentaire au-dessus du footer */
 }
 
 .footer-content {
@@ -450,6 +453,7 @@ a:hover {
     position: relative;
     z-index: 1;
     padding-top: 80px; /* Ajouter un padding-top pour compenser la hauteur de la navbar */
+    padding-bottom: 50px; /* Ajouter un padding-bottom pour assurer un espace avant le footer */
 }
 
 /* Exception pour les pages avec hero sections qui gèrent déjà leur propre positionnement */
