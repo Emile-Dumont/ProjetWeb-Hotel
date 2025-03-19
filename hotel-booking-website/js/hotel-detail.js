@@ -15,17 +15,19 @@ document.addEventListener('DOMContentLoaded', function() {
             rating: 4.5,
             reviews: 120,
             amenities: ["WiFi", "Piscine", "Restaurant"],
-            badge: "-20%"
+            badge: "-20%",
+            description: "Un hôtel élégant situé au cœur de Paris, offrant une expérience luxueuse et un accès facile aux principaux sites touristiques."
         },
         {
             id: 2,
             name: "Resort Méditerranée",
             location: "Nice, France",
-            image: "assets/images/hotels/hotelmed.jpg",
+            image: "assets/images/nice/nice_ext.jpg",
             price: 210,
             rating: 4.0,
             reviews: 87,
-            amenities: ["WiFi", "Piscine", "Spa"]
+            amenities: ["WiFi", "Piscine", "Spa"],
+            description: "Profitez de la beauté de la Côte d'Azur dans ce resort avec vue imprenable sur la Méditerranée."
         },
         {
             id: 3,
@@ -36,7 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
             rating: 5.0,
             reviews: 45,
             amenities: ["WiFi", "Vue montagne", "Cheminée"],
-            badge: "Nouveau"
+            badge: "Nouveau",
+            description: "Un chalet authentique au pied du Mont Blanc, parfait pour les amateurs de sports d'hiver."
         },
         // Ajout de nouveaux hôtels pour tester la pagination
         {
@@ -47,7 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
             price: 165,
             rating: 3.5,
             reviews: 68,
-            amenities: ["WiFi", "Vue mer", "Bar"]
+            amenities: ["WiFi", "Vue mer", "Bar"],
+            description: "Un établissement charmant donnant sur le Vieux-Port de Marseille."
         },
         {
             id: 5,
@@ -59,7 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
             rating: 4.8,
             reviews: 132,
             amenities: ["WiFi", "Spa", "Restaurant"],
-            badge: "-15%"
+            badge: "-15%",
+            description: "Logement de luxe au cœur de Lyon avec une vue panoramique sur la ville."
         },
         {
             id: 6,
@@ -69,7 +74,8 @@ document.addEventListener('DOMContentLoaded', function() {
             price: 175,
             rating: 4.2,
             reviews: 91,
-            amenities: ["WiFi", "Piscine", "Parking"]
+            amenities: ["WiFi", "Piscine", "Parking"],
+            description: "Une résidence paisible entourée d'oliviers dans la belle région d'Aix-en-Provence."
         },
         {
             id: 7,
@@ -79,7 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
             price: 120,
             rating: 3.8,
             reviews: 45,
-            amenities: ["WiFi", "Restaurant", "Jardin"]
+            amenities: ["WiFi", "Restaurant", "Jardin"],
+            description: "Une auberge traditionnelle alsacienne nichée au cœur de la forêt."
         },
         {
             id: 8,
@@ -90,7 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
             rating: 4.3,
             reviews: 76,
             amenities: ["WiFi", "Vue mer", "Bar"],
-            badge: "Populaire"
+            badge: "Populaire",
+            description: "Séjournez directement face à l'océan Atlantique dans ce superbe hôtel côtier."
         },
         {
             id: 9,
@@ -102,7 +110,8 @@ document.addEventListener('DOMContentLoaded', function() {
             rating: 4.7,
             reviews: 104,
             amenities: ["WiFi", "Dégustation", "Spa"],
-            badge: "-10%"
+            badge: "-10%",
+            description: "Un château historique entouré de vignobles bordelais, proposant des dégustations de vin."
         }
     ];
     
@@ -179,15 +188,6 @@ document.addEventListener('DOMContentLoaded', function() {
         hotelsToShow.forEach(hotel => {
             hotelsList.innerHTML += generateHotelHTML(hotel);
         });
-        
-        // Mettre à jour la pagination active
-        updatePagination(page);
-    }
-    
-    // Fonction pour mettre à jour l'affichage de la pagination
-    function updatePagination(currentPage) {
-        const paginationElement = document.querySelector('.pagination');
-        let paginationHTML = '';
         
         // Bouton précédent
         if (currentPage > 1) {
